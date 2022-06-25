@@ -1,28 +1,18 @@
-# CATATAN ( NOTE )
-Mulai saat ini, script ini tidak akan dilanjutkan lagi, jika ingin menambah sesuatu lebih baik dibuat pribadi aja, malah keren itu lhu punya tapi yang lain kaga jadi lhu bisa jual tu fitur kalo di publik di script ini mungkin kalian akan rugi sendiri, sudah susah-susah bikin code tapi malah dijual Ama yang cuma modal nyomot doang & dibuat konten yt, yutuber untung yang buat kaga, tapi terserah kalian juga kalo mau pull ya tetep saya ACC
+# BOT APAKAH INI?
+Bot ini adalah bot MD (Multi-Device), sehingga bot ini dapat digunakan meskipun hp pengguna mati. Bot ini masih dalam pengembangan (baileys beta) sehingga terdapat masih banyak bug di dalamnya. Bot ini no enc, sehingga pengguna dapat recode (asal jangan dijual juga) dan dapat menambah fitur tertentu dengan apikey. 
 
-Kalo mau jualan normal aja, jangan sampe nipu atau memberi harapan kosong, contohnya "dijual fitur langkah ada storenya 😱", gabaik itu, mau untung boleh tapi jangan sampe merugikan orang lain 
-
-Best Regards. Hisoka
-
-# Hisoka-Morou
+# GabutBot MD
 Script WhatsApp Bot Multi Device
 
 ## NOTE
-This Script is for everyone, not for Sale. Jika dijual neraka menunggumu brother !
+This Script is for everyone, not for sale. Jika dijual neraka menunggumu brother !
 
 <p align="center">
-	<img src="https://telegra.ph/file/09cc0981ccf07754d0af6.jpg" width="35%" style="margin-left: auto;margin-right: auto;display: block;">
+	<img src="https://i.ibb.co/JQJ8MWh/demon-slayer-tanjiro-kamado-with-sharp-sword-on-fire-hd-anime-hd.jpg" width="35%" style="margin-left: auto;margin-right: auto;display: block;">
 </p>
-<h1 align="center">Hisoka-Morou</h1>
+<h1 align="center">GabutBot-MD</h1>
 
 This is Script of WhatsApp multi device, working with [`@adiwajshing/baileys`](https://github.com/adiwajshing/baileys)
-
-## My Project
-* New script to replace this script [`look here`](https://github.com/zhwzein/Killua-Zoldyck) (`Support Legacy or Baileys`)
-* WhatsApp Bot normal [`DikaArdnt/Hisoka-Morrow`](https://github.com/DikaArdnt/Hisoka-Morrow)
-* WhatsApp Bot Multi Device [`DikaArdnt/Hisoka-Morou`](https://github.com/DikaArdnt/Hisoka-Morou)
-* WhatsApp Bot Using Library whatsapp-web.js [`hisoka-waweb.js`](https://github.com/Hisoka-Morrou/hisoka-waweb.js/)
 
 
 ## UNTUK PENGGUNA WINDOWS/RDP
@@ -33,8 +23,8 @@ This is Script of WhatsApp multi device, working with [`@adiwajshing/baileys`](h
 
 
 ```bash
-git clone https://github.com/DikaArdnt/Hisoka-Morou
-cd Hisoka-Morou
+git clone https://github.com/YangJunMing12/GabutBot-MD
+cd GabutBot-MD
 npm install
 ```
 
@@ -54,8 +44,8 @@ apt update && apt upgrade
 apt install git -y
 apt install nodejs -y
 apt install ffmpeg -y
-git clone https://github.com/DikaArdnt/Hisoka-Morou
-cd Hisoka-Morou
+git clone https://github.com/YangJunMing12/GabutBot-MD
+cd GabutBot-MD
 npm install
 ```
 
@@ -75,8 +65,8 @@ $ node .
 WhatsApp bot is still in the development stage, so there are a few bugs
 WhatsApp Connection (BETA, not working perfectly)
 
-Editing Number Owner & session name in [`config.js`](https://github.com/DikaArdnt/Hisoka-Morou/blob/master/config.js)
-Get Apikey zenz on [`zenz`](https://zenzapi.xyz/pricing)
+Editing Number Owner & session name in [`config.js`]
+Get Apikey zenz on [`zenz`](https://zenzapi.xyz/pricing) harga murah kok sans 
 
 
 ## Thanks To
@@ -84,12 +74,8 @@ Get Apikey zenz on [`zenz`](https://zenzapi.xyz/pricing)
 * [`Nurutomo`](https://github.com/Nurutomo)
 * [`Mhankbarbar`](https://github.com/MhankBarBar)
 * [`Faiz`](https://github.com/FaizBastomi)
-* [`Gimenz`](https://github.com/Gimenz)
-* [`rayy`](https://github.com/rayyreall)
-* [`Fatih Arridho`](https://github.com/FatihArridho)
-* [`zhwzein`](https://github.com/zhwzein)
-* [`CAF-ID`](https://github.com/CAF-ID)
-* [`bintang`](https://github.com/Bintangp02)
+* [`Arietube001`]
+* [`Shiny Sebastian`](https://github.com/YangJunMing12)
 
 ```Thanks to all who have participated in the development of this script```
 
@@ -97,5 +83,6 @@ Get Apikey zenz on [`zenz`](https://zenzapi.xyz/pricing)
 License: [MIT](https://en.wikipedia.org/wiki/MIT_License)
 
 Support Me
-* [`Paypal`](https://www.paypal.me/Cakhaho)
-* [`Saweria`](https://saweria.co/DikaArdnt)
+* [`OVO`]08116646665
+
+# Thank you and have fun!
