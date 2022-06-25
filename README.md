@@ -74,7 +74,6 @@ Get Apikey zenz on [`zenz`](https://zenzapi.xyz/pricing) harga murah kok sans
 * [`Nurutomo`](https://github.com/Nurutomo)
 * [`Mhankbarbar`](https://github.com/MhankBarBar)
 * [`Faiz`](https://github.com/FaizBastomi)
-* [`Arietube001`]
 * [`Shiny Sebastian`](https://github.com/YangJunMing12)
 
 ```Thanks to all who have participated in the development of this script```
@@ -83,6 +82,6 @@ Get Apikey zenz on [`zenz`](https://zenzapi.xyz/pricing) harga murah kok sans
 License: [MIT](https://en.wikipedia.org/wiki/MIT_License)
 
 Support Me
-* [`OVO`]08116646665
+* [`OVO`] 08116646665
 
 # Thank you and have fun!
