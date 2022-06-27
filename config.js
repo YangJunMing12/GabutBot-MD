@@ -18,13 +18,14 @@ global.APIKeys = {
 	'https://zenzapis.xyz': 'woaibeijingtiananmen',
 }
 
-// Other
-global.owner = ['628116646665']
-global.premium = ['628116646665']
-global.packname = 'GabutBot-MD'
-global.author = 'ShinySebastian'
-global.sessionName = 'gabutbot'
-global.prefa = ['','!','.','🐦','🐤','🗿']
+// Configuration BOT
+
+global.owner = ['628116646665'] //Nomor lu
+global.premium = ['628116646665'] //Nomor lu
+global.packname = 'GabutBot-MD' //Nama bot lu utk wm stiker
+global.author = 'ShinySebastian' //Nama lu utk wm stiker
+global.sessionName = 'gabutbot' //Nama session
+global.prefa = ['','!','.','🐦','🐤','🗿'] //Prefix bot serah lo mau ubah atau ga
 global.sp = '⭔'
 global.mess = {
     success: '✓ Success',
@@ -44,6 +45,7 @@ global.limitawal = {
 global.thumb = fs.readFileSync('./lib/arietube.jpg')
 global.vitube = { url: 'https://telegra.ph/file/15209657f9d4f59c7ca1e.mp4' }
 
+//Jangan diubah nanti bisa eror nangis
 let file = require.resolve(__filename)
 fs.watchFile(file, () => {
 	fs.unwatchFile(file)

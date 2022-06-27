@@ -1,10 +1,9 @@
 
 /**
-   * Jangan asal edit Ntar error nages
+   * Jangan asal edit! nanti eror
    * Create By Dika Ardnt.
-   * Recode By arietube
+   * Recode By shinysebastian
    * Contact Me on wa.me/628116646665
-   * https://m.youtube.com/channel/UC0rPHvwr0sJtaccF8Mm1Xng
 */
 
 require('./config')
@@ -51,6 +50,7 @@ module.exports = arietube = async (arietube, m, chatUpdate, store) => {
         const itsMe = m.sender == botNumber ? true : false
         const text = q = args.join(" ")
         const quoted = m.quoted ? m.quoted : m
+		 const ownerNumber = ["628116646665@s.whatsapp.net"] 
         const mime = (quoted.msg || quoted).mimetype || ''
         const isMedia = /image|video|sticker|audio/.test(mime)
 	
@@ -60,6 +60,7 @@ module.exports = arietube = async (arietube, m, chatUpdate, store) => {
         const participants = m.isGroup ? await groupMetadata.participants : ''
         const groupAdmins = m.isGroup ? await getGroupAdmins(participants) : ''
     	const isBotAdmins = m.isGroup ? groupAdmins.includes(botNumber) : false
+		 const isOwner = ownerNumber.includes(m.sender)
     	const isAdmins = m.isGroup ? groupAdmins.includes(m.sender) : false
     	const isPremium = isCreator || global.premium.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender) || false
 	
@@ -542,7 +543,7 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
                     {buttonId: `donasi`, buttonText: {displayText: 'Donasi'}, type: 1}
                 ]
                 let buttonMessage = {
-                    text: `Script : https://www.youtube.com/channel/UCUAdKiNCnt6mpGD94okTaoQ\nJangan lupa subscribe ngab😊`,
+                    text: `Script : https://github.com/YangJunMing12/GabutBot-MD`,
                     footer: 'Recode by Shiny Sebastian, Arietube001',
                     buttons: buttons,
                     headerType: 2
@@ -701,6 +702,94 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
 			ini_txt += `Jalan Kaki: ${get_result.jalan_kaki}\n`
 			arietube.sendText(m.chat, ini_txt)
 					break
+					case 'mlusername': case 'mluser':
+			if (args.length == 0) throw (`Usage: ${prefix + command} userID/serverID`)
+			get_args = args.join(" ").split("/")
+                    kota1 = get_args[0]
+                    kota2 = get_args[1]
+			get_result = await fetchJson(`https://api.lolhuman.xyz/api/mobilelegend/${kota1}/${kota2}?apikey=woaibeijingtiananmen`)
+			get_result = get_result.result
+			arietube.sendText(m.chat, get_result)
+			break
+			case 'ffusername': case 'ffuser':
+			if (args.length == 0) throw (`Usage: ${prefix + command} userID`)
+			kueri = args.join(" ")
+			get_result = await fetchJson(`https://api.lolhuman.xyz/api/freefire/${kueri}?apikey=woaibeijingtiananmen`)
+			get_result = get_result.result
+			arietube.sendText(m.chat, get_result)
+			break
+			case 'minecraftserverstatus':
+			if (args.length == 0) throw (`Usage: ${prefix + command} Server ID`)
+			kueri = args.join(" ")
+			get_result = await fetchJson(`https://api.lolhuman.xyz/api/minecraft/${kueri}?apikey=woaibeijingtiananmen`)
+			get_result = get_result.result
+			ini_txt = `[ *MINECRAFT SERVER STATUS* ]\n\n`
+			ini_txt += `Version : ${get_result.version}\n`
+			ini_txt += `Player(s) online : ${get_result.players.online}\n`
+			ini_txt += `Player(s) max : ${get_result.players.max}\n`
+			ini_txt += `Latency : ${get_result.latency}`
+			arietube.sendText(m.chat, ini_txt)
+			break
+			case 'genshinchara':
+			if (args.length == 0) throw (`Usage: ${prefix + command} jean`)
+					kueri = args.join(" ")
+                    get_result = await fetchJson(`https://api.lolhuman.xyz/api/genshin/${kueri}?apikey=woaibeijingtiananmen`)
+			get_result = get_result.result
+			ini_txt = `[ *GENSHIN IMPACT CHARACTER* ]\n\n`
+			ini_txt += `Title: ${get_result.title}\n`
+			ini_txt += `Intro: ${get_result.intro}\n`
+			arietube.sendImage(m.chat, get_result.cover1, ini_txt, m)
+			break
+			case 'gantengcek':
+  case 'cekganteng':
+    
+				if (!q) throw (`Penggunaan ${command} Nama\n\nContoh : ${command} Christian`)
+					const gan = ['5', '10', '15' ,'20', '25','30','35','40','45','50','55','60','65','70','75','80','85','90','100']
+					const teng = gan[Math.floor(Math.random() * gan.length)]
+arietube.sendMessage(m.chat, { text: `Nama : ${q}\nJawaban : *${teng}%*` }, { quoted: m })
+
+					break
+case 'cantikcek':
+  case 'cekcantik':
+    
+				if (!q) throw (`Penggunaan ${command} Nama\n\nContoh : ${command} Christian`)
+					const can = ['5', '10', '15' ,'20', '25','30','35','40','45','50','55','60','65','70','75','80','85','90','100']
+					const tik = can[Math.floor(Math.random() * can.length)]
+arietube.sendMessage(m.chat, { text: `Nama : ${q}\nJawaban : *${tik}%*` }, { quoted: m })
+
+					break
+case 'sangecek':
+  case 'ceksange':
+    case 'gaycek':
+      case 'cekgay':
+        case 'lesbicek':
+          case 'ceklesbi':
+            
+				if (!q) throw (`Penggunaan ${command} Nama\n\nContoh : ${command} ${pushname}`)
+					const sangeh = ['5', '10', '15','20', '25','30','35','40','45','50','55','60','65','70','75','80','85','90','100']
+					const sange = sangeh[Math.floor(Math.random() * sangeh.length)]
+arietube.sendMessage(m.chat, { text: `Nama : ${q}\nJawaban : *${sange}%*` }, { quoted: m })
+
+					break
+					 case 'cekpasangan':
+				if (!q) throw (`Penggunaan ${command} Nama1|nama2\n\nContoh : ${command} Rehan|Rizki`)
+					get_args = args.join(" ").split("|")
+				jeremy = get_args[0]
+				gaby = get_args[1]
+					const kkan = ['5', '10', '15' ,'20', '25','30','35','40','45','50','55','60','65','70','75','80','85','90','100 ']
+					const dsik = kkan[Math.floor(Math.random() * kkan.length)]
+arietube.sendMessage(m.chat, { text: `Nama : ${jeremy} ❤ ${gaby}\nJawaban : *${dsik}%*` }, { quoted: m })
+break
+			case 'cnnindonesia':
+                    get_result = await fetchJson(`http://api.lolhuman.xyz/api/cnnindonesia?apikey=woaibeijingtiananmen`)
+                    get_result = get_result.result
+                    ini_txt = "Result :\n"
+                    for (var x of get_result) {
+                        ini_txt += `Judul : ${x.judul}\n`
+                        ini_txt += `Link : ${x.link}\n\n`
+                    }
+                    arietube.sendText(m.chat, ini_txt)
+                    break
             case 'kuismath': case 'math': {
                 if (kuismath.hasOwnProperty(m.sender.split('@')[0])) throw "Masih Ada Sesi Yang Belum Diselesaikan!"
                 let { genMath, modes } = require('./src/math')
@@ -770,6 +859,12 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
                 await arietube.groupLeave(m.chat).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
             }
             break
+		case 'shutdown':
+             if (!isCreator) throw mess.owner
+			 m.reply(`Otsukaresama deshita🖐`)
+             await sleep(3000)
+             process.exit()
+             break
             case 'setexif': {
                if (!isCreator) throw mess.owner
                if (!text) throw `Example : ${prefix + command} packname|author`
@@ -783,7 +878,7 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
 		let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-		await arietube.groupParticipantsUpdate(m.chat, [users], 'remove').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+		await arietube.groupParticipantsUpdate(m.chat, [users], 'remove').then((res) => m.reply('Success mengeluarkan peserta')).catch((err) => m.reply('Tidak dapat mengeluarkan peserta'))
 	}
 	break
 	case 'add': {
@@ -791,7 +886,7 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
 		let users = m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-		await arietube.groupParticipantsUpdate(m.chat, [users], 'add').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+		await arietube.groupParticipantsUpdate(m.chat, [users], 'add').then((res) => m.reply('Sukses memasukkan peserta')).catch((err) => m.reply('Tidak dapat mengeluarkan peserta'))
 	}
 	break
 	case 'promote': {
@@ -799,7 +894,7 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
 		let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-		await arietube.groupParticipantsUpdate(m.chat, [users], 'promote').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+		await arietube.groupParticipantsUpdate(m.chat, [users], 'promote').then((res) => m.reply('Ciee udah jadi orang dalam mwehehe:v')).catch((err) => m.reply('Tidak dapat menjadikan sebagai admin'))
 	}
 	break
 	case 'demote': {
@@ -807,7 +902,7 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
 		let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-		await arietube.groupParticipantsUpdate(m.chat, [users], 'demote').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+		await arietube.groupParticipantsUpdate(m.chat, [users], 'demote').then((res) => m.reply('Awokawok turun pangkat yahaha')).catch((err) => m.reply('Tidak dapat membatalkan sebagai admin'))
 	}
 	break
         case 'block': {
@@ -1014,10 +1109,182 @@ ${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
             arietube.sendMessage(m.chat, buttonMessageDevote)
 	}
             break
-                 
+                
+//suit
+case 'suitbot':
+  var but = [{buttonId: `sbatu`, buttonText: { displayText: "Batu ✊" }, type: 1 }, {buttonId: `sgunting`, buttonText: { displayText: "Gunting ✌️" }, type: 1 }, {buttonId: `skertas`, buttonText: { displayText: "Kertas ✋" }, type: 1 }]
+  var sutit = `*[ GAME SUIT ]*\n\nNOTE : *KAMU MEMILIKI 3 BUTTON DAN 3 KESEMPATAN UNTUK MEMILIH ANTARA BATU GUNTING KERTAS*\n*JIKA KAMU MEMENANGKAN 3 KESEMPATAN PERMAINAN BATU GUNTING KERTAS*\n*KAMU MENANG!!*`
+arietube.sendMessage(m.chat, { text: sutit, buttons: but, footer: "Pilih Button Di Bawah\n\n- _Jika Kamu Pakai WhatsApp Mod Langsung Saja Ketik #sgunting, #sbatu, #skertas_", templateButtons: but }, {quoted: m})
+break
+case 'sbatu':
+  const batu = [`Aku Memilih *Batu*\nKamu Memilih *Batu*\n\n!! KITA SERI !!`,`Aku Memilih *Gunting*\nKamu Memilih *Batu*\n\n!! KAMU MENANG:( !!`,`Aku Memilih *Kertas*\nKamu Memilih *Batu*\n\n!! AKU MENANG !!`]
+					const batuh = batu[Math.floor(Math.random() * batu.length)]
+					var batuh2 = `*[ GAME SUIT ]*\n\n${batuh}`
+					arietube.sendMessage(m.chat, { text: batuh2 }, { quoted: m })
+break
+case 'sgunting':
+  const gunting = [`Aku Memilih *Batu*\nKamu Memilih *Gunting*\n\n!! AKU MENANG !!`,`Aku Memilih *Gunting*\nKamu Memilih *Gunting*\n\n!! KITA SERI !!`,`Aku Memilih *Kertas*\nKamu Memilih *Gunting*\n\n!! KAMU MENANG :( !!`]
+					const guntingh = gunting[Math.floor(Math.random() * gunting.length)]
+					var guntingh2 = `*[ GAME SUIT ]*\n\n${guntingh}`
+					arietube.sendMessage(m.chat, { text: guntingh2 }, { quoted: m})
+
+break
+case 'skertas':
+
+  const kertas = [`Aku Memilih *Batu*\nKamu Memilih *Kertas*\n\n!! KAMU MENANG :( !!`,`Aku Memilih *Gunting*\nKamu Memilih *Kertas*\n\n!! KAMU KALAH !!`,`Aku Memilih *Kertas*\nKamu Memilih *Kertas*\n\n!! KITA SERI !!`]
+					const kertash = kertas[Math.floor(Math.random() * kertas.length)]
+					var kertash2 = `*[ GAME SUIT ]*\n\n${kertash}`
+					arietube.sendMessage(m.chat, { text: kertash2 }, { quoted: m })
+
+break
+case 'slot':	
+ const pepekk = [
+        '🍊 : 🍒 : 🍐',
+        '🍒 : 🔔 : 🍊',
+        '🍇 : 🍇 : 🍐',
+        '🍊 : 🍋 : 🔔', //Arasya
+        '🔔 : 🍒 : 🍐',
+        '🔔 : 🍒 : 🍊',
+        '🍊 : 🍋 : 🔔',        
+        '🍐 : 🍒 : 🍋',
+        '🍐 : 🍒 : 🍐',
+        '🍊 : 🍒 : 🍒',
+        '🔔 : 🔔 : 🍇',
+        '🍌 : 🍌 : 🔔',
+        '🥑 : 🥑 : 🥑 Win👑',
+        '🍐 : 🔔 : 🔔',
+        '🍊 : 🍋 : 🍒',
+        '🌶️ : 🌶️ : 🌶️ Win👑',
+        '🍋 : 🍋 : 🍋 Win👑',
+        '🔔 : 🔔 : 🍇',
+        '🔔 : 🍇 : 🍇', 
+        '🔔 : 🍐 : 🔔',
+        '🍌 : 🍌 : 🍌 Win👑'
+        ]
+  const kalah = [
+        '🍊 : 🍒 : 🍐',
+        '🍒 : 🔔 : 🍊',
+        '🍇 : 🍇 : 🍐',
+        '🍊 : 🍋 : 🔔', //Arasya
+        '🔔 : 🍒 : 🍐',
+        '🔔 : 🍒 : 🍊',
+        '🍊 : 🍋 : 🔔',        
+        '🍐 : 🍒 : 🍋',
+        '🍐 : 🍒 : 🍐',
+        '🍊 : 🍒 : 🍒',
+        '🔔 : 🔔 : 🍇',
+        '🍌 : 🍌 : 🔔',
+        '🍐 : 🔔 : 🔔',
+        '🍊 : 🍋 : 🍒',
+        '🔔 : 🔔 : 🍇',
+        '🔔 : 🍇 : 🍇', 
+        '🔔 : 🍐 : 🔔',
+        ]
+ const kalah2 = [
+        '🍊 : 🍒 : 🍐',
+        '🍒 : 🔔 : 🍊',
+        '🍇 : 🍇 : 🍐',
+        '🍊 : 🍋 : 🔔', //Arasya
+        '🔔 : 🍒 : 🍐',
+        '🔔 : 🍒 : 🍊',
+        '🍊 : 🍋 : 🔔',        
+        '🍐 : 🍒 : 🍋',
+        '🍐 : 🍒 : 🍐',
+        '🍊 : 🍒 : 🍒',
+        '🔔 : 🔔 : 🍇',
+        '🍌 : 🍌 : 🔔',
+        '🍐 : 🔔 : 🔔',
+        '🍊 : 🍋 : 🍒',
+        '🔔 : 🔔 : 🍇',
+        '🔔 : 🍇 : 🍇', 
+        '🔔 : 🍐 : 🔔',
+        ]
+        const selot = pepekk[Math.floor(Math.random() * pepekk.length)]
+        const kalahnya = kalah[Math.floor(Math.random() * kalah.length)]
+        const kalahnya2 = kalah2[Math.floor(Math.random() * kalah2.length)]
+        var slotnya = `*[ 🎰 GAME SLOT 🎰 ]*
+
+${kalahnya}
+${selot}
+${kalahnya2}
+
+Note : Jika Kamu Mendapatkan Item Yang Sama, Kamu Menang!!!
+Contoh : 🔔 : 🔔 : 🔔`
+        var but = [{buttonId: `${command}`, buttonText: { displayText: "Kembali Slot" }, type: 1 }]
+arietube.sendMessage(m.chat, { text: slotnya, buttons: but, footer: "© Slot By ShinySebastian", templateButtons: but }, {quoted: m})
+        break	
+case 'cekaku':		
+const ganteng = ['Cakep ✔️','Jelek Anjrit ❌']
+  const sifat = ['Pembohong','Galak','Suka Bantu Orang','Baik','Jahat:(','Bobrok','Suka BadMood','Setia','Tulus','Beriman','Penyayang Binatang','Baperan']
+  const suka = ['Makan','Tidur','Main Game','Sesama Jenis','Binatang',`Seseorang Yang ${pushname} Sukai`,'Belajar','Ibadah','Diri Sendiri']
+  const nomernyah = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','31','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','82','84','84','86','87','88','89','90','91','92','93','94','95','96','97','98','99','100']
+  const keberanian = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','31','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','82','84','84','86','87','88','89','90','91','92','93','94','95','96','97','98','99','100']
+  const kepinteran = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','31','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','82','84','84','86','87','88','89','90','91','92','93','94','95','96','97','98','99','100']
+					const ganz = ganteng[Math.floor(Math.random() * ganteng.length)]
+					const sipat = sifat[Math.floor(Math.random() * sifat.length)]
+					const numb = nomernyah[Math.floor(Math.random() * nomernyah.length)]
+					const gai = suka[Math.floor(Math.random() * suka.length)]
+					const berani = keberanian[Math.floor(Math.random() * keberanian.length)]
+					const pinter = kepinteran[Math.floor(Math.random() * kepinteran.length)]
+  var cek = `*[ CEK PRIBADI KAMU ]*
+ 
+Nama : ${pushname}
+Sifat : ${sipat}
+Keberanian : ${berani}%
+Ketakutan : ${numb}%
+Cakep : ${ganz}
+Cek Pintar : ${pinter}%
+Menyukai : ${gai}
+  `
+
+					 arietube.profilePictureUrl(m.chat, 'image').then( res => arietube.sendMessage(m.chat, {caption: cek, image: { url: res }}, {quoted: m})).catch(() => arietube.sendMessage(m.chat, {caption: cek, image: {url: `https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg`}}, {quoted: m}))
+				    break
+					case 'bisakah': case 'bisagak': 	
+					if (args.length == 0) throw (`Usage: ${prefix + command} saya ganteng`)
+					kueri = args.join(" ")				
+				const bisa = ['Bisa','Gak Bisa','Gak Bisa Ajg Aaokawpk','TENTU PASTI KAMU BISA!!!!','Keknya kamu bisa','Gak mungkin lah cuk🗿']
+					const ga = bisa[Math.floor(Math.random() * bisa.length)]
+arietube.sendMessage(m.chat, { text: `Pertanyaan : ${q}\nJawaban : ${ga}` }, { quoted: m })
+break	
+case 'apakah':
+if (!q) return reply(`Penggunaan ${command} text\n\nContoh : ${command} saya wibu`)
+					const apa = ['Iya', 'Tidak', 'Bisa Jadi', 'Betul','Pastilah','Pasti bisa kack!']
+					const kah = apa[Math.floor(Math.random() * apa.length)]
+arietube.sendMessage(m.chat, { text: `Pertanyaan : Apakah ${q}\nJawaban : ${kah}` }, { quoted: m })
+					break	
+case 'gimana': case 'bagaimana': case 'how':
+if (!q) return reply(`Penggunaan ${command} text\n\nContoh : ${command} saya wibu`)
+					const gimana = ['Gak Gimana2', 'Sulit Itu Bro', 'Maaf Bot Tidak Bisa Menjawab', 'Coba Deh Cari Di Gugel','astaghfirallah Beneran???','Pusing ah','Owhh Begitu:(','Yang Sabar Ya Bos:(','Gimana yeee']
+					const ya = gimana[Math.floor(Math.random() * gimana.length)]
+arietube.sendMessage(m.chat, { text: `Pertanyaan : ${q}\nJawaban : ${ya}` }, { quoted: m })
+					break				
+case 'rate':
+if (!q) return reply(`Penggunaan ${command} text\n\nContoh : ${command} Gambar aku`)
+					const ra = ['5', '10', '15' ,'20', '25','30','35','40','45','50','55','60','65','70','75','80','85','90','100']
+					const te = ra[Math.floor(Math.random() * ra.length)]
+arietube.sendMessage(m.chat, { text: `Rate : ${q}\nJawaban : *${te}%*` }, { quoted: m })
+					break
+					case 'kapan': case 'kapankah':
+if (!q) return reply(`Penggunaan ${command} Pertanyaan\n\nContoh : ${command} Saya Mati`)
+					const kapan = ['5 Hari Lagi', '10 Hari Lagi', '15 Hari Lagi','20 Hari Lagi', '25 Hari Lagi','30 Hari Lagi','35 Hari Lagi','40 Hari Lagi','45 Hari Lagi','50 Hari Lagi','55 Hari Lagi','60 Hari Lagi','65 Hari Lagi','70 Hari Lagi','75 Hari Lagi','80 Hari Lagi','85 Hari Lagi','90 Hari Lagi','100 Hari Lagi','5 Bulan Lagi', '10 Bulan Lagi', '15 Bulan Lagi','20 Bulan Lagi', '25 Bulan Lagi','30 Bulan Lagi','35 Bulan Lagi','40 Bulan Lagi','45 Bulan Lagi','50 Bulan Lagi','55 Bulan Lagi','60 Bulan Lagi','65 Bulan Lagi','70 Bulan Lagi','75 Bulan Lagi','80 Bulan Lagi','85 Bulan Lagi','90 Bulan Lagi','100 Bulan Lagi','1 Tahun Lagi','2 Tahun Lagi','3 Tahun Lagi','4 Tahun Lagi','5 Tahun Lagi','Besok','Lusa',`Abis Command Ini Juga Lu ${q}`]
+					const kapankah = kapan[Math.floor(Math.random() * kapan.length)]
+arietube.sendMessage(m.chat, { text: `Pertanyaan : ${q}\nJawaban : *${kapankah}*` }, { quoted: m })
+					break		
+case 'siapa': case 'siapakah':
+if (!q) return reply(`Penggunaan ${command} Pertanyaan\n\nContoh : ${command} beban?`)
+					const siapa = ['Gaby','Yoan','Naya','bapakmu','Jeremy','Natan','Setan','Dajjal','Shine','Tuhan','Jokowi','Ibumu','Nicho','Ezelio','Raja Inggris','Malaikat maut','Eline','Ga ada','Panji','Bot','Nenekmu','Prabowo','Megawatzy','Malaikat surga','Kim Jong Un','Putin']
+					const gatau = siapa[Math.floor(Math.random() * siapa.length)]
+arietube.sendMessage(m.chat, { text: `Pertanyaan : ${q}\nJawaban : *${gatau}*` }, { quoted: m })
+					break		
+case 'dimana': case 'kemana':
+if (!q) throw (`Penggunaan ${command} Pertanyaan\n\nContoh : ${command} saya sekarang?`)
+					const dimanas = ['Neraka','Kuburan','Gereja','Got','Tempat tidur','Istana presiden','Surga','Rumah gaby','Rumah jeremy','Laut','peti mati','Jepang','Kantor polisi','Rumah mu','Rumah zio','Kalkud','Mulut mu','Hati mu','Rumah eline']
+					const kemanas = dimanas[Math.floor(Math.random() * dimanas.length)]
+arietube.sendMessage(m.chat, { text: `Pertanyaan : ${q}\nJawaban : Di *${kemanas}*` }, { quoted: m })
+					break					
 case 'cekvote':
 if (!m.isGroup) throw mess.group
-if (!(m.chat in vote)) throw `_*tidak ada voting digrup ini!*_\n\n*${prefix}vote* - untuk memulai vote`
+if (!(m.chat in vote)) throw `_*Tidak ada voting digrup ini!*_\n\n*${prefix}vote* - untuk memulai vote`
 teks_vote = `*「 VOTE 」*
 *Alasan:* ${vote[m.chat][0]}
 ┌〔 UPVOTE 〕
@@ -1134,13 +1401,13 @@ break
                 if (!isBotAdmins) throw mess.botAdmin
                 if (!isAdmins) throw mess.admin
                 if (args[0] === '1') {
-                    await arietube.groupToggleEphemeral(m.chat, 1*24*3600).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+                    await arietube.groupToggleEphemeral(m.chat, 1*24*3600).then((res) => m.reply('Success turn on ephemeral for 1 day')).catch((err) => m.reply(jsonformat(err)))
                 } else if (args[0] === '7') {
-                    await arietube.groupToggleEphemeral(m.chat, 7*24*3600).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+                    await arietube.groupToggleEphemeral(m.chat, 7*24*3600).then((res) => m.reply('Success turn on ephemeral for 7 days')).catch((err) => m.reply(jsonformat(err)))
                 } else if (args[0] === '90') {
-                    await arietube.groupToggleEphemeral(m.chat, 90*24*3600).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+                    await arietube.groupToggleEphemeral(m.chat, 90*24*3600).then((res) => m.reply('Success turn on ephemeral for 90 days')).catch((err) => m.reply(jsonformat(err)))
                 } else if (args[0] === 'off') {
-                    await arietube.groupToggleEphemeral(m.chat, 0).then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+                    await arietube.groupToggleEphemeral(m.chat, 0).then((res) => m.reply('Success turn off ephemeral')).catch((err) => m.reply('Error!'))
                 } else {
                 let sections = [
                 {
@@ -1176,12 +1443,12 @@ break
                     let btn = [{
                                 urlButton: {
                                     displayText: 'Source Code',
-                                    url: 'https://github.com/DikaArdnt/arietube-Morou'
+                                    url: 'https://github.com/YangJunMing12/GabutBot-MD'
                                 }
                             }, {
                                 callButton: {
                                     displayText: 'Number Phone Owner',
-                                    phoneNumber: '+62 858-2835-7727'
+                                    phoneNumber: '+62 811-664-6665'
                                 }
                             }, {
                                 quickReplyButton: {
@@ -1215,12 +1482,12 @@ break
 		    let btn = [{
                                 urlButton: {
                                     displayText: 'Source Code',
-                                    url: 'https://github.com/DikaArdnt/arietube-Morou'
+                                    url: 'https://github.com/YangJunMing12/GabutBot-MD'
                                 }
                             }, {
                                 callButton: {
                                     displayText: 'Number Phone Owner',
-                                    phoneNumber: '+62 858-2835-7727'
+                                    phoneNumber: '+62 811-664-6665'
                                 }
                             }, {
                                 quickReplyButton: {
@@ -1834,7 +2101,7 @@ break
             }
             break
             case 'sifatusaha': {
-                if (!ext)throw `Example : ${prefix+ command} 28, 12, 2021`
+                if (!ext)throw `Example : ${ command} 28, 12, 2021`
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.sifat_usaha_bisnis(tgl, bln, thn)
                 if (anu.status == false) return m.reply(anu.message)
@@ -1978,7 +2245,7 @@ break
             }
             break
             case 'zodiak': case 'zodiac': {
-                if (!text) throw `Example : ${prefix+ command} 7 7 2005`
+                if (!text) throw `Example : ${ command} 7 7 2005`
                 let zodiak = [
                     ["capricorn", new Date(1970, 0, 1)],
                     ["aquarius", new Date(1970, 0, 20)],
@@ -2108,7 +2375,7 @@ break
                     headerType: 2
                 }
                 let msg = await arietube.sendMessage(m.chat, buttonMessage, { quoted: m })
-                arietube.sendMessage(m.chat, { audio: { url: anu.result.audio }, mimetype: 'audio/mpeg'}, { quoted: msg })
+                arietube.sendMessage(m.chat, { audio: { url: anu.result.audio }, mimetype: 'audio/mpeg'}, { quoted: m })
             }
             break
 	        case 'instagram': case 'ig': case 'igdl': {
@@ -2128,7 +2395,7 @@ break
                 m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/downloader/joox', { query: text }, 'apikey'))
                 let msg = await arietube.sendImage(m.chat, anu.result.img, `⭔ Title : ${anu.result.lagu}\n⭔ Album : ${anu.result.album}\n⭔ Singer : ${anu.result.penyanyi}\n⭔ Publish : ${anu.result.publish}\n⭔ Lirik :\n${anu.result.lirik.result}`, m)
-                arietube.sendMessage(m.chat, { audio: { url: anu.result.mp4aLink }, mimetype: 'audio/mpeg', fileName: anu.result.lagu+'.m4a' }, { quoted: msg })
+                arietube.sendMessage(m.chat, { audio: { url: anu.result.mp4aLink }, mimetype: 'audio/mpeg', fileName: anu.result.lagu+'.m4a' }, { quoted: m })
             }
             break
             case 'soundcloud': case 'scdl': {
@@ -2136,7 +2403,7 @@ break
                 m.reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/downloader/soundcloud', { url: isUrl(text)[0] }, 'apikey'))
                 let msg = await arietube.sendImage(m.chat, anu.result.thumb, `⭔ Title : ${anu.result.title}\n⭔ Url : ${isUrl(text)[0]}`)
-                arietube.sendMessage(m.chat, { audio: { url: anu.result.url }, mimetype: 'audio/mpeg', fileName: anu.result.title+'.m4a' }, { quoted: msg })
+                arietube.sendMessage(m.chat, { audio: { url: anu.result.url }, mimetype: 'audio/mpeg', fileName: anu.result.title+'.m4a' }, { quoted: m })
             }
             break
 	        case 'twitdl': case 'twitter': {
@@ -2171,7 +2438,7 @@ break
                     headerType: 4
                 }
                 let msg = await arietube.sendMessage(m.chat, buttonMessage, { quoted: m })
-                arietube.sendMessage(m.chat, { audio: { url: anu.result.audio } }, { quoted: msg })
+                arietube.sendMessage(m.chat, { audio: { url: anu.result.audio } }, { quoted: m })
             }
             break
 	        case 'fbdl': case 'fb': case 'facebook': {
@@ -2722,6 +2989,56 @@ let capt = `⭔ Title: ${judul}
             arietube.sendImage(m.chat, res.result[0].thumbnail, capt, m)
             }
             break
+			case 'spotifysearch':
+			 if (args.length == 0) throw (`Example: ${prefix + command} Melukis Senja`)
+                    query = args.join(" ")
+                    get_result = await fetchJson(`http://api.lolhuman.xyz/api/spotifysearch?apikey=woaibeijingtiananmen&query=${query}`)
+                    get_result = get_result.result
+                    ini_txt = "[ *SPOTIFY SEARCH* ]\n\n"
+                    for (var x of get_result) {
+                        ini_txt += `Title : ${x.title}\n`
+                        ini_txt += `Artists : ${x.artists}\n`
+                        ini_txt += `Duration : ${x.duration}\n`
+                        ini_txt += `Link : ${x.link}\n`
+                        ini_txt += `Preview : ${x.preview_url}\n\n\n`
+                    }
+                    m.reply(ini_txt)
+                    break
+					case 'spotifydw': case 'spotify':
+			if (args.length == 0) throw (`Usage: ${prefix + command} link`)
+                m.reply(mess.wait) 
+			kueri = args[0]
+                let anuaa = await fetchJson(`https://api.lolhuman.xyz/api/spotify?apikey=woaibeijingtiananmen&url=${kueri}`)
+                let msgsaa = await arietube.sendImage(m.chat, anuaa.result.thumbnail, `⭔ Title : ${anuaa.result.title}\n⭔ Singer : ${anuaa.result.artists}\n⭔ Duration : ${anuaa.result.duration}\n⭔ Popularity : ${anuaa.result.popularity}\n⭔ URL : ${anuaa.result.external_urls.spotify}`, m)
+                arietube.sendMessage(m.chat, { audio: { url: anuaa.result.link }, mimetype: 'audio/mp4', fileName: anuaa.result.title+'.mp3' }, { quoted: m })
+				break
+				case 'zippyshare': case 'zippydl':
+				if (args.length == 0) throw (`Usage: ${prefix + command} link`)
+                m.reply(mess.wait) 
+			kueri = args[0]
+			get_result = await fetchJson(`https://api.lolhuman.xyz/api/zippyshare?apikey=woaibeijingtiananmen&url=${kueri}`)
+			get_result = get_result.result
+			ini_txt = `[ *ZIPPYSHARE ALTERNATIVE DOWNLOAD* ]\n\n`
+			ini_txt += `⭔ Name File : ${get_result.name_file}\n`
+			ini_txt += `⭔ Size : ${get_result.size}\n`
+			ini_txt += `⭔ Date Upload : ${get_result.date_upload}\n`
+			ini_txt += `⭔ Download URL : ${get_result.download_url}\n`
+			m.reply(ini_txt)
+			break
+			case 'mediafire':
+				if (args.length == 0) throw (`Usage: ${prefix + command} link`)
+                m.reply(mess.wait) 
+			kueri = args[0]
+			get_result = await fetchJson(`https://api.lolhuman.xyz/api/mediafire?apikey=woaibeijingtiananmen&url=${kueri}`)
+			get_result = get_result.result
+			ini_txt = `[ *MEDIAFIRE ALTERNATIVE DOWNLOAD* ]\n\n`
+			ini_txt += `⭔ Name File : ${get_result.filename}\n`
+			ini_txt += `⭔ Type : ${get_result.filetype}\n`
+			ini_txt += `⭔ Size : ${get_result.filesize}\n`
+			ini_txt += `⭔ Date Upload : ${get_result.uploaded}\n`
+			ini_txt += `⭔ Download URL : ${get_result.link}\n`
+			m.reply(ini_txt)
+			break
             case 'setmenu': {
             if (!isCreator) throw mess.owner
             let setbot = db.data.settings[botNumber]
@@ -2781,8 +3098,8 @@ let capt = `⭔ Title: ${judul}
              anu = `
 ╔═══❖•ೋ°
 ╟𓆩Welcome to 𝐆𝐀𝐁𝐔𝐓𝐁𝐎𝐓-𝐌𝐃 ♡ Whatsapp Bot!
-╟ Silahkan dipakai :
-╟👨‍👨‍👧‍👧*Group Official Bot:*
+╟ Silahkan dipakai :D
+╟👨‍👨‍👧‍👧 *Group Official Bot:*
 ╟https://chat.whatsapp.com/B9lYQqJGq5P0FEGHB12GDn
 ╚═══❖•ೋ°
 ╔═ *😁 Group Menu*
@@ -2837,7 +3154,11 @@ let capt = `⭔ Title: ${judul}
 ╟⏏️ ${prefix}getvideo [query]
 ╟⏏️ ${prefix}umma [url]
 ╟⏏️ ${prefix}joox [query]
+╟⏏️ ${prefix}spotify [url]
+╟⏏️ ${prefix}spotifysearch [query]
 ╟⏏️ ${prefix}soundcloud [url]
+╟⏏️ ${prefix}zippyshare [url]
+╟⏏️ ${prefix}mediafire [url]
 ╚═════ ▓▓ ࿇
 
 ╔═ *🔍 Searching Menu*
@@ -2855,6 +3176,10 @@ let capt = `⭔ Title: ${judul}
 ╟🔃 ${prefix}jaraktempuh [kota1|kota2]
 ╟🔃 ${prefix}stalkig [query]
 ╟🔃 ${prefix}stalkgithub [query]
+╟🔃 ${prefix}mlusername [user ID/server ID]
+╟🔃 ${prefix}ffusername [User ID]
+╟🔃 ${prefix}minecraftserverstatus [Server IP]
+╟🔃 ${prefix}genshinchara [query]
 ╚═════ ▓▓ ࿇
 
 ╔═ *🆎 Random Menu*
@@ -2958,6 +3283,26 @@ let capt = `⭔ Title: ${judul}
 ╟🎮 ${prefix}tebak [option]
 ╟🎮 ${prefix}math [mode]
 ╟🎮 ${prefix}suitpvp [@tag]
+╟🎮 ${prefix}suitbot
+╟🎮 ${prefix}slot
+╟🎮 ${prefix}cekaku
+╚═════ ▓▓ ࿇
+
+╔═ *🦪 Kerang Ajaib Menu*
+╟
+╟🌏 ${prefix}apakah [query]
+╟🌏 ${prefix}gimana [query]
+╟🌏 ${prefix}kapan [query]
+╟🌏 ${prefix}siapa [query
+╟🌏 ${prefix}bisakah [query]
+╟🌏 ${prefix}dimana/kemana [query]
+╟🌏 ${prefix}rate [query]
+╟🌏 ${prefix}gantengcek [query]
+╟🌏 ${prefix}cantikcek [query]
+╟🌏 ${prefix}lesbicek [query]
+╟🌏 ${prefix}gaycek [query]
+╟🌏 ${prefix}gaycek [query]
+╟🌏 ${prefix}cekpasangan [query1|query2]
 ╚═════ ▓▓ ࿇
 
 ╔═ *🔮 Primbon Menu*
