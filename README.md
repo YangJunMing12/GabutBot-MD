@@ -23,9 +23,11 @@ This is Script of WhatsApp multi device, working with [`@adiwajshing/baileys`](h
 
 
 ```bash
+npm install yarn --global
 git clone https://github.com/YangJunMing12/GabutBot-MD
 cd GabutBot-MD
-npm install
+yarn
+npm start
 ```
 
 ## HOW TO CONNECT TO MONGODB WHEN RUN IN HEROKU
