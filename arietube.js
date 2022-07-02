@@ -34,7 +34,11 @@ let caklontong_desk = db.data.game.lontong_desk = []
 let tebakkalimat = db.data.game.kalimat = []
 let tebaklirik = db.data.game.lirik = []
 let tebaktebakan = db.data.game.tebakan = []
+let asahotak = db.data.game.asahotak = []
+let tebakbendera = db.data.game.tebakbendera = []
+let tekateki = db.data.game.tekateki = []
 let vote = db.data.others.vote = []
+let akinator = JSON.parse(fs.readFileSync('./akidb/akinator.json'))
 
 module.exports = arietube = async (arietube, m, chatUpdate, store) => {
     try {
@@ -208,7 +212,53 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             arietube.sendText(m.chat, caption, m, { contextInfo: { mentionedJid: parseMention(caption) }}).then(mes => { return _family100['family100'+m.chat].pesan = mesg }).catch(_ => _)
             if (isWin || isSurender) delete _family100['family100'+m.chat]
         }
-
+ if (akinator.hasOwnProperty(m.sender.split('@')[0]) && isCmd && ["0", "1", "2", "3", "4", "5"].includes(body)) {
+                kuis = true
+                var { server, frontaddr, session, signature, question, step } = akinator[m.sender.split('@')[0]]
+                if (step == "0" && budy == "5") throw("Maaf Anda telah mencapai pertanyaan pertama")
+                var ini_url = `https://api.lolhuman.xyz/api/akinator/answer?apikey=woaibeijingtiananmen&server=${server}&frontaddr=${frontaddr}&session=${session}&signature=${signature}&answer=${budy}&step=${step}`
+                var get_result = await fetchJson(ini_url)
+                var get_result = get_result.result
+                if (get_result.hasOwnProperty("name")) {
+                    var ini_name = get_result.name
+                    var description = get_result.description
+                    ini_txt = `${ini_name} - ${description}\n\n`
+                    ini_txt += "*Sekian dan terima gaji. Akinator by GabutBot*"
+                    await arietube.sendImage(m.chat, get_result.image, ini_txt, m).then(() => {
+                        delete akinator[m.sender.split('@')[0]]
+                        fs.writeFileSync("./akidb/akinator.json", JSON.stringify(akinator))
+                    })
+                    return
+                }
+                var { question, _, step } = get_result
+                ini_txt = `${question}\n\n`
+                ini_txt += "0 - Ya\n"
+                ini_txt += "1 - Tidak\n"
+                ini_txt += "2 - Saya Tidak Tau\n"
+                ini_txt += "3 - Mungkin\n"
+                ini_txt += "4 - Mungkin Tidak\n"
+                ini_txt += "5 - Kembali ke Pertanyaan Sebelumnya"
+                if (args[0] === '5') {
+                    var ini_url = `https://api.lolhuman.xyz/api/akinator/back?apikey=woaibeijingtiananmen&server=${server}&frontaddr=${frontaddr}&session=${session}&signature=${signature}&answer=${budy}&step=${step}`
+                    var get_result = await fetchJson(ini_url)
+                    var get_result = get_result.result
+                    var { question, _, step } = get_result
+                    ini_txt = `${question}\n\n`
+                    ini_txt += "0 - Ya\n"
+                    ini_txt += "1 - Tidak\n"
+                    ini_txt += "2 - Saya Tidak Tau\n"
+                    ini_txt += "3 - Mungkin\n"
+                    ini_txt += "4 - Mungkin Tidak"
+                    ini_txt += "5 - Kembali ke Pertanyaan Sebelumnya"
+                }
+                arietube.sendText(m.chat, ini_txt, m).then(() => {
+                    const data_ = akinator[m.sender.split('@')[0]]
+                    data_["question"] = question
+                    data_["step"] = step
+                    akinator[m.sender.split('@')[0]] = data_
+                    fs.writeFileSync("./akidb/akinator.json", JSON.stringify(akinator))
+                })
+            }
         if (tebaklagu.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
             kuis = true
             jawaban = tebaklagu[m.sender.split('@')[0]]
@@ -244,6 +294,15 @@ ${Array.from(room.jawaban, (jawaban, index) => {
                 delete tebakkata[m.sender.split('@')[0]]
             } else m.reply('*Jawaban Salah!*')
         }
+		
+		if (tekateki.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
+            kuis = true
+            jawaban = tekateki[m.sender.split('@')[0]]
+            if (budy.toLowerCase() == jawaban) {
+                await arietube.sendButtonText(m.chat, [{ buttonId: 'tebak teki', buttonText: { displayText: 'Teka Teki' }, type: 1 }], `🎮 Teka Teki 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, arietube.user.name, m)
+                delete tekateki[m.sender.split('@')[0]]
+            } else m.reply('*Jawaban Salah!*')
+        }
 
         if (caklontong.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
             kuis = true
@@ -262,6 +321,24 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             if (budy.toLowerCase() == jawaban) {
                 await arietube.sendButtonText(m.chat, [{ buttonId: 'tebak kalimat', buttonText: { displayText: 'Tebak Kalimat' }, type: 1 }], `🎮 Tebak Kalimat 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, arietube.user.name, m)
                 delete tebakkalimat[m.sender.split('@')[0]]
+            } else m.reply('*Jawaban Salah!*')
+        }
+		
+		if (asahotak.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
+            kuis = true
+            jawaban = asahotak[m.sender.split('@')[0]]
+            if (budy.toLowerCase() == jawaban) {
+                await arietube.sendButtonText(m.chat, [{ buttonId: 'tebak asahotak', buttonText: { displayText: 'Asah Otak' }, type: 1 }], `🎮 Asah Otak 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, arietube.user.name, m)
+                delete asahotak[m.sender.split('@')[0]]
+            } else m.reply('*Jawaban Salah!*')
+        }
+		
+		if (tebakbendera.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
+            kuis = true
+            jawaban = tebakbendera[m.sender.split('@')[0]]
+            if (budy.toLowerCase() == jawaban) {
+                await arietube.sendButtonText(m.chat, [{ buttonId: 'tebak bendera', buttonText: { displayText: 'Tebak Bendera' }, type: 1 }], `🎮 Tebak Bendera 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, arietube.user.name, m)
+                delete tebakbendera[m.sender.split('@')[0]]
             } else m.reply('*Jawaban Salah!*')
         }
 
@@ -595,7 +672,22 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
             m.reply(tex.replace(/[aiueo]/g, ter).replace(/[AIUEO]/g, ter.toUpperCase()))
             break
             case 'tebak': {
-                if (!text) throw `Example : ${prefix + command} lagu\n\nOption : \n1. lagu\n2. gambar\n3. kata\n4. kalimat\n5. lirik\n6. lontong`
+                 let menuss = [
+                {
+                title: "Tebak-tebakan Menu",
+                rows: [
+                {title: "Tebak Lagu", rowId: `tebak lagu`, description: `Tebak judul lagu dari musik`},
+                {title: "Tebak Gambar", rowId: `tebak gambar`, description: `Tebak kalimat dari setiap gambar`},
+                {title: "Tebak Kata", rowId: `tebak kata`, description: `Tebak Kata dari soal yg diberikan`},
+                {title: "Tebak Kalimat", rowId: `tebak kalimat`, description: `Tebak kalimat/bagian yg rumpang`},
+                {title: "Tebak Lirik", rowId: `tebak lirik`, description: `Melengkapi bagian rumpang dari lirik yg diberikan`},
+				{title: "Cak Lontong", rowId: `tebak lontong`, description: `Teka-teki advanced yg hanya bisa dijawab out of the box`},
+				{title: "Asah Otak", rowId: `tebak asahotak`, description: `Tebak-tebakan seputar Ilmu pengetahuan umum`},
+				{title: "Tebak Bendera", rowId: `tebak bendera`, description: `Tebak nama negara dari sebuah bendera`},
+				{title: "Teka-teki", rowId: `tebak teki`, description: `Tebak-tebakan penghibur kita semua :D`},
+                ]
+                },
+				]
                 if (args[0] === "lagu") {
                     if (tebaklagu.hasOwnProperty(m.sender.split('@')[0])) throw "Masih Ada Sesi Yang Belum Diselesaikan!"
                     let anu = await fetchJson('https://fatiharridho.github.io/tebaklagu.json')
@@ -677,11 +769,57 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
                     delete caklontong[m.sender.split('@')[0]]
 		    delete caklontong_desk[m.sender.split('@')[0]]
                     }
-                }
-            }
+                } else if (args[0] === 'asahotak') {
+					if (asahotak.hasOwnProperty(m.sender.split('@')[0])) throw "Masih Ada Sesi Yang Belum Diselesaikan!"
+                    let anuw = await fetchJson('https://zenzapis.xyz/entertainment/asahotak?apikey=woaibeijingtiananmen')
+                    let result = anuw.result
+                    arietube.sendText(m.chat, `Silahkan Jawab Pertanyaan Berikut\n\n${result.soal}\nWaktu : 60s`, m).then(() => {
+                    asahotak[m.sender.split('@')[0]] = result.jawaban.toLowerCase()
+                    })
+                    await sleep(60000)
+                    if (asahotak.hasOwnProperty(m.sender.split('@')[0])) {
+                    console.log("Jawaban: " + result.jawaban)
+                   arietube.sendButtonText(m.chat, [{ buttonId: 'tebak asahotak', buttonText: { displayText: 'Asah Otak' }, type: 1 }], `Waktu Habis\nJawaban:  ${asahotak[m.sender.split('@')[0]]}\n\nIngin bermain? tekan button dibawah`, arietube.user.name, m)
+                    delete asahotak[m.sender.split('@')[0]]
+					}
+            } else if (args[0] === 'bendera') {
+				if (tebakbendera.hasOwnProperty(m.sender.split('@')[0])) throw "Masih Ada Sesi Yang Belum Diselesaikan!"
+                    let anug = await fetchJson('https://api.lolhuman.xyz/api/tebak/bendera?apikey=woaibeijingtiananmen')
+                    let result = anug.result
+                    arietube.sendText(m.chat, `Silahkan Jawab Pertanyaan Berikut\n\n${result.flag}\nWaktu : 60s`, m).then(() => {
+                    tebakbendera[m.sender.split('@')[0]] = result.name.toLowerCase()
+                    })
+                    await sleep(60000)
+                    if (tebakbendera.hasOwnProperty(m.sender.split('@')[0])) {
+                    console.log("Jawaban: " + result.name)
+                   arietube.sendButtonText(m.chat, [{ buttonId: 'tebak bendera', buttonText: { displayText: 'Tebak Bendera' }, type: 1 }], `Waktu Habis\nJawaban:  ${tebakbendera[m.sender.split('@')[0]]}\n\nIngin bermain? tekan button dibawah`, arietube.user.name, m)
+                    
+                    delete tebakbendera[m.sender.split('@')[0]]
+					}
+			} else if (args[0] === 'teki') {
+				if (tekateki.hasOwnProperty(m.sender.split('@')[0])) throw "Masih Ada Sesi Yang Belum Diselesaikan!"
+                    let anuf = await fetchJson('https://zenzapis.xyz/entertainment/tekateki?apikey=woaibeijingtiananmen')
+                    let result = anuf.result
+                    arietube.sendText(m.chat, `Silahkan Jawab Pertanyaan Berikut\n\n${result.soal}\nWaktu : 60s`, m).then(() => {
+                    tekateki[m.sender.split('@')[0]] = result.jawaban.toLowerCase()
+                    })
+                    await sleep(60000)
+                    if (tekateki.hasOwnProperty(m.sender.split('@')[0])) {
+                    console.log("Jawaban: " + result.jawaban)
+                   arietube.sendButtonText(m.chat, [{ buttonId: 'tebak teki', buttonText: { displayText: 'Teka Teki' }, type: 1 }], `Waktu Habis\nJawaban:  ${tekateki[m.sender.split('@')[0]]}\n\nIngin bermain? tekan button dibawah`, arietube.user.name, m)
+                    
+                    delete tekateki[m.sender.split('@')[0]]
+					}
+			}
+			arietube.sendListMsg(m.chat, `*Silahkan Pilih Menu Dibawah Ini*`, arietube.user.name, `TEBAK MENU`, `Click Here`, menuss, m)
+			}
             break
+			
+			
+				
+					
 			case 'jaraktempuh':
-			if (args.length == 0) return reply(`Usage: ${prefix + command} kota1|kota2`)
+			if (args.length == 0) throw(`Usage: ${prefix + command} kota1|kota2`)
 			get_args = args.join(" ").split("|")
                     kota1 = get_args[0]
                     kota2 = get_args[1]
@@ -1247,35 +1385,41 @@ Menyukai : ${gai}
 arietube.sendMessage(m.chat, { text: `Pertanyaan : ${q}\nJawaban : ${ga}` }, { quoted: m })
 break	
 case 'apakah':
-if (!q) return reply(`Penggunaan ${command} text\n\nContoh : ${command} saya wibu`)
+if (!q) throw(`Penggunaan ${command} text\n\nContoh : ${command} saya wibu`)
 					const apa = ['Iya', 'Tidak', 'Bisa Jadi', 'Betul','Pastilah','Pasti bisa kack!']
 					const kah = apa[Math.floor(Math.random() * apa.length)]
 arietube.sendMessage(m.chat, { text: `Pertanyaan : Apakah ${q}\nJawaban : ${kah}` }, { quoted: m })
 					break	
 case 'gimana': case 'bagaimana': case 'how':
-if (!q) return reply(`Penggunaan ${command} text\n\nContoh : ${command} saya wibu`)
+if (!q) throw(`Penggunaan ${command} text\n\nContoh : ${command} saya wibu`)
 					const gimana = ['Gak Gimana2', 'Sulit Itu Bro', 'Maaf Bot Tidak Bisa Menjawab', 'Coba Deh Cari Di Gugel','astaghfirallah Beneran???','Pusing ah','Owhh Begitu:(','Yang Sabar Ya Bos:(','Gimana yeee']
 					const ya = gimana[Math.floor(Math.random() * gimana.length)]
 arietube.sendMessage(m.chat, { text: `Pertanyaan : ${q}\nJawaban : ${ya}` }, { quoted: m })
 					break				
 case 'rate':
-if (!q) return reply(`Penggunaan ${command} text\n\nContoh : ${command} Gambar aku`)
+if (!q) throw(`Penggunaan ${command} text\n\nContoh : ${command} Gambar aku`)
 					const ra = ['5', '10', '15' ,'20', '25','30','35','40','45','50','55','60','65','70','75','80','85','90','100']
 					const te = ra[Math.floor(Math.random() * ra.length)]
 arietube.sendMessage(m.chat, { text: `Rate : ${q}\nJawaban : *${te}%*` }, { quoted: m })
 					break
 					case 'kapan': case 'kapankah':
-if (!q) return reply(`Penggunaan ${command} Pertanyaan\n\nContoh : ${command} Saya Mati`)
+if (!q) throw(`Penggunaan ${command} Pertanyaan\n\nContoh : ${command} Saya Mati`)
 					const kapan = ['5 Hari Lagi', '10 Hari Lagi', '15 Hari Lagi','20 Hari Lagi', '25 Hari Lagi','30 Hari Lagi','35 Hari Lagi','40 Hari Lagi','45 Hari Lagi','50 Hari Lagi','55 Hari Lagi','60 Hari Lagi','65 Hari Lagi','70 Hari Lagi','75 Hari Lagi','80 Hari Lagi','85 Hari Lagi','90 Hari Lagi','100 Hari Lagi','5 Bulan Lagi', '10 Bulan Lagi', '15 Bulan Lagi','20 Bulan Lagi', '25 Bulan Lagi','30 Bulan Lagi','35 Bulan Lagi','40 Bulan Lagi','45 Bulan Lagi','50 Bulan Lagi','55 Bulan Lagi','60 Bulan Lagi','65 Bulan Lagi','70 Bulan Lagi','75 Bulan Lagi','80 Bulan Lagi','85 Bulan Lagi','90 Bulan Lagi','100 Bulan Lagi','1 Tahun Lagi','2 Tahun Lagi','3 Tahun Lagi','4 Tahun Lagi','5 Tahun Lagi','Besok','Lusa',`Abis Command Ini Juga Lu ${q}`]
 					const kapankah = kapan[Math.floor(Math.random() * kapan.length)]
 arietube.sendMessage(m.chat, { text: `Pertanyaan : ${q}\nJawaban : *${kapankah}*` }, { quoted: m })
 					break		
 case 'siapa': case 'siapakah':
-if (!q) return reply(`Penggunaan ${command} Pertanyaan\n\nContoh : ${command} beban?`)
+if (!q) throw(`Penggunaan ${command} Pertanyaan\n\nContoh : ${command} beban?`)
 					const siapa = ['Gaby','Yoan','Naya','bapakmu','Jeremy','Natan','Setan','Dajjal','Shine','Tuhan','Jokowi','Ibumu','Nicho','Ezelio','Raja Inggris','Malaikat maut','Eline','Ga ada','Panji','Bot','Nenekmu','Prabowo','Megawatzy','Malaikat surga','Kim Jong Un','Putin']
 					const gatau = siapa[Math.floor(Math.random() * siapa.length)]
 arietube.sendMessage(m.chat, { text: `Pertanyaan : ${q}\nJawaban : *${gatau}*` }, { quoted: m })
-					break		
+					break	
+case 'sifat': case 'ceksifat':
+if (!q) throw(`Penggunaan ${command} Nama\n\nContoh : ${command} Eline?`)
+					const sifaat = ['Baik','penyayang','jahat','tidak setia','hebat','pintar','setia','buruk','bijaksana','bijak','cantik','menggemaskan','jelek','dingin','keren','bersih','serakah','rakus','ramah','dermawan','tinggi hati','sombong','rendah hati','penyabar','pemalas','nakal','rajin','imut','ceroboh','mudah marah','sopan','baik hati']
+					const elinee = sifaat[Math.floor(Math.random() * sifaat.length)]
+arietube.sendMessage(m.chat, { text: `Pertanyaan : ${q}\nJawaban : *${elinee}*` }, { quoted: m })
+					break						
 case 'dimana': case 'kemana':
 if (!q) throw (`Penggunaan ${command} Pertanyaan\n\nContoh : ${command} saya sekarang?`)
 					const dimanas = ['Neraka','Kuburan','Gereja','Got','Tempat tidur','Istana presiden','Surga','Rumah gaby','Rumah jeremy','Laut','peti mati','Jepang','Kantor polisi','Rumah mu','Rumah zio','Kalkud','Mulut mu','Hati mu','Rumah eline']
@@ -1895,17 +2039,21 @@ break
                 arietube.sendMessage(m.chat, { image: { url: result }, caption: '⭔ Media Url : '+result }, { quoted: m })
             }
             break
-            case 'anime': case 'waifu': case 'husbu': case 'neko': case 'shinobu': case 'megumin': case 'waifus': case 'nekos': case 'trap': case 'blowjob': {
-                m.reply(mess.wait)
-                arietube.sendMessage(m.chat, { image: { url: `https://zenzapis.xyz/randomanime/${command}?apikey=woaibeijingtiananmen` }, caption: 'Generate Random ' + command }, { quoted: m })
-            }
-            break
+          
 	    case 'couple': {
                 m.reply(mess.wait)
                 let anu = await fetchJson('https://raw.githubusercontent.com/iamriz7/kopel_/main/kopel.json')
                 let random = anu[Math.floor(Math.random() * anu.length)]
                 arietube.sendMessage(m.chat, { image: { url: random.male }, caption: `Couple Male` }, { quoted: m })
                 arietube.sendMessage(m.chat, { image: { url: random.female }, caption: `Couple Female` }, { quoted: m })
+            }
+	    break
+		case 'couple2': {
+                m.reply(mess.wait)
+                let anu = await fetchJson('https://api.lolhuman.xyz/api/random/ppcouple?apikey=woaibeijingtiananmen')
+               
+                arietube.sendMessage(m.chat, { image: { url: anu.result.male }, caption: `Couple Male` }, { quoted: m })
+                arietube.sendMessage(m.chat, { image: { url: anu.result.female }, caption: `Couple Female` }, { quoted: m })
             }
 	    break
             case 'coffe': case 'kopi': case 'ngopi': case 'coffee': {
@@ -1992,7 +2140,7 @@ break
             }
             break
 	        case 'motivasi': case 'dilanquote': case 'bucinquote': case 'katasenja': case 'puisi': {
-                let anu = await fetchJson(api('zenz', '/api/'+command, {}, 'apikey'))
+                let anu = await fetchJson(`https://zenzapis.xyz/randomtext/${command}?apikey=woaibeijingtiananmen`)
                 let buttons = [
                     {buttonId: `motivasi`, buttonText: {displayText: 'Next'}, type: 1}
                 ]
@@ -2287,7 +2435,7 @@ break
             }
             break
 			case 'stalkig':
-		if (args.length == 0) return reply(`Usage: ${prefix + command} shinesannn2008`)
+		if (args.length == 0) throw(`Usage: ${prefix + command} shinesannn2008`)
 					kueri = args[0]
                     get_result = await fetchJson(`https://zenzapis.xyz/stalker/ig?username=${kueri}&apikey=woaibeijingtiananmen`)
 			get_result = get_result.result
@@ -2306,7 +2454,7 @@ break
 			arietube.sendImage(m.chat, get_result.caption.profile_hd, ini_txt, m)
 			break
 			case 'stalkgithub':
-		if (args.length == 0) return reply(`Usage: ${prefix + command} yangjunming12`)
+		if (args.length == 0) throw(`Usage: ${prefix + command} yangjunming12`)
 					kueri = args[0]
                     get_result = await fetchJson(`https://zenzapis.xyz/stalker/github?username=${kueri}&apikey=woaibeijingtiananmen`)
 			get_result = get_result.result
@@ -2920,7 +3068,25 @@ let capt = `⭔ Title: ${judul}
             }
             arietube.sendImage(m.chat, res.result[0].thumb, capt, m)
             }
-            break
+			break
+		case 'spam': case 'spamchat':
+		if (!text) throw `Example: ${prefix + command} jakarta`
+		kueri = args.join(" ")
+		m.reply('*SPAM DIMULAI!*\n\nBot akan spam 10 kali!')
+		await sleep(2000)
+		await m.reply(kueri)
+		await m.reply(kueri)
+		await m.reply(kueri)
+		await m.reply(kueri)
+		await m.reply(kueri)
+		await m.reply(kueri)
+		await m.reply(kueri)
+		await m.reply(kueri)
+		await m.reply(kueri)
+		await m.reply(kueri)
+		await sleep(3000)
+		m.reply('*SPAM SELESAI!*')
+        break
             case 'nowplayingbioskop': {
             let res = await fetchJson(api('zenz', '/webzone/nowplayingbioskop', {}, 'apikey'))
             let capt = `Now Playing Bioskop\n\n`
@@ -2989,6 +3155,44 @@ let capt = `⭔ Title: ${judul}
             arietube.sendImage(m.chat, res.result[0].thumbnail, capt, m)
             }
             break
+			case 'kusonimesearch':
+			if (args.length == 0) throw (`Example: ${prefix + command} One Piece`)
+				kueri = args.join(" ")
+				get_result = await fetchJson(`https://api.lolhuman.xyz/api/kusonimesearch?apikey=woaibeijingtiananmen&query=${kueri}`)
+				get_result = get_result.result
+				ini_txt = `⭔ Title : ${get_result.title}\n`
+				ini_txt += `⭔ Title Japanese : ${get_result.japanese}\n`
+				ini_txt += `⭔ Genre : ${get_result.genre}\n`
+				ini_txt += `⭔ Seasons : ${get_result.seasons}\n`
+				ini_txt += `⭔ Producers : ${get_result.producers}\n`
+				ini_txt += `⭔ Status : ${get_result.status}\n`
+				ini_txt += `⭔ Total Episode : ${get_result.total_episode}\n`
+				ini_txt += `⭔ Score : ${get_result.score}\n`
+				ini_txt += `⭔ Duration : ${get_result.duration}\n`
+				ini_txt += `⭔ Released : ${get_result.released_on}\n`
+				ini_txt += `⭔ Link DL : ${get_result.link_dl}`
+				arietube.sendImage(m.chat, get_result.thumbnail, ini_txt, m)
+				break
+				case 'moviesearch': case 'lk21':
+			if (args.length == 0) throw (`Example: ${prefix + command} Transformer`)
+				kueri = args.join(" ")
+				get_result = await fetchJson(`https://api.lolhuman.xyz/api/lk21?apikey=woaibeijingtiananmen&query=${kueri}`)
+				get_result = get_result.result
+				ini_txt = `⭔ Title : ${get_result.title}\n`
+				ini_txt += `⭔ Genre : ${get_result.genre}\n`
+				ini_txt += `⭔ Views : ${get_result.views}\n`
+				ini_txt += `⭔ Duration : ${get_result.duration}\n`
+				ini_txt += `⭔ Years : ${get_result.tahun}\n`
+				ini_txt += `⭔ Rating : ${get_result.rating}\n`
+				ini_txt += `⭔ Description : ${get_result.desc}\n`
+				ini_txt += `⭔ Actors : ${get_result.actors}\n`
+				ini_txt += `⭔ Location : ${get_result.location}\n`
+				ini_txt += `⭔ Release Date : ${get_result.date_release}\n`
+				ini_txt += `⭔ Language : ${get_result.language}\n`
+				ini_txt += `⭔ Link DL : ${get_result.link_dl}`
+				
+				arietube.sendImage(m.chat, get_result.thumbnail, ini_txt, m)
+				break
 			case 'spotifysearch':
 			 if (args.length == 0) throw (`Example: ${prefix + command} Melukis Senja`)
                     query = args.join(" ")
@@ -3039,6 +3243,380 @@ let capt = `⭔ Title: ${judul}
 			ini_txt += `⭔ Download URL : ${get_result.link}\n`
 			m.reply(ini_txt)
 			break
+			case 'ktpmaker':
+			  if (args.length == 0) throw (`Usage: ${prefix + command} nik|provinsi|kabupaten|nama|tempat, tanggal lahir|jenis kelamin|jalan|rt/rw|kelurahan|kecamatan|agama|status nikah|pekerjaan|warga negara|berlaku sampai|url_image\n\nExample: ${prefix + command} 456127893132123|bumipertiwi|fatamorgana|LoL Human|mars, 99-99-9999|belum ditemukan|jl wardoyo|999/999|turese|imtuni|alhamdulillah islam|jomblo kack|mikirin dia|indo ori no kw|hari kiamat|https://i.ibb.co/Xb2pZ88/test.jpg`)
+                    get_args = args.join(" ").split("|")
+                    nik = get_args[0]
+                    prov = get_args[1]
+                    kabu = get_args[2]
+                    name = get_args[3]
+                    ttl = get_args[4]
+                    jk = get_args[5]
+                    jl = get_args[6]
+                    rtrw = get_args[7]
+                    lurah = get_args[8]
+                    camat = get_args[9]
+                    agama = get_args[10]
+                    nikah = get_args[11]
+                    kerja = get_args[12]
+                    warga = get_args[13]
+                    until = get_args[14]
+                    img = get_args[15]
+                    ini_buffer = await getBuffer(`http://api.lolhuman.xyz/api/ktpmaker?apikey=woaibeijingtiananmen&nik=${nik}&prov=${prov}&kabu=${kabu}&name=${name}&ttl=${ttl}&jk=${jk}&jl=${jl}&rtrw=${rtrw}&lurah=${lurah}&camat=${camat}&agama=${agama}&nikah=${nikah}&kerja=${kerja}&warga=${warga}&until=${until}&img=${img}`)
+                    arietube.sendImage(m.chat, ini_buffer, 'KTPnya kack', m)
+                    break
+					case 'bucinsertifikat':
+					case 'sertifikatbucin':
+					case 'bucincert':
+					if (args.length == 0) throw (`Example: ${prefix + command} Justimun Kentod`)
+                   kueri = args.join(" ")
+                    ini_buffer = await getBuffer(`https://api.lolhuman.xyz/api/bucinserti?apikey=woaibeijingtiananmen&name=${kueri}`)
+                    arietube.sendImage(m.chat, ini_buffer, 'Sertifikatnya kack', m)
+                    break
+					case 'tololsert':
+					case 'tololcert':
+					case 'tololsertifikat':
+					if (args.length == 0) throw (`Example: ${prefix + command} Justimun Kentod`)
+                   kueri = args.join(" ")
+                    ini_buffer = await getBuffer(`https://api.lolhuman.xyz/api/toloserti?apikey=woaibeijingtiananmen&name=${kueri}`)
+                    arietube.sendImage(m.chat, ini_buffer, 'Sertifikatnya kack', m)
+                    break
+					case 'pacarsertifikat':
+				case 'pacarcert':
+
+	
+                    if (args.length == 0) throw (`Usage: ${prefix + command} nama1|nama2`)
+                    get_args = args.join(" ").split("|")
+                    nik = get_args[0]
+                    prov = get_args[1]
+					luxiang = `Selamat yaa ${nik} ❤️ ${prov}`
+					ini_buffer = await getBuffer(`https://api.lolhuman.xyz/api/pacarserti?apikey=woaibeijingtiananmen&name1=${nik}&name2=${prov}`)
+                    arietube.sendImage(m.chat, ini_buffer, luxiang, m)
+                    break
+					case 'cuaca':
+					 if (args.length == 0) throw (`Example: ${prefix + command} Yogyakarta`)
+                    daerah = args[0]
+                    get_result = await fetchJson(`http://api.lolhuman.xyz/api/cuaca/${daerah}?apikey=woaibeijingtiananmen`)
+                    get_result = get_result.result
+                    ini_txt = `⭔ Tempat : ${get_result.tempat}\n`
+                    ini_txt += `⭔ Cuaca : ${get_result.cuaca}\n`
+                    ini_txt += `⭔ Angin : ${get_result.angin}\n`
+                    ini_txt += `⭔ Description : ${get_result.description}\n`
+                    ini_txt += `⭔ Kelembapan : ${get_result.kelembapan}\n`
+                    ini_txt += `⭔ Suhu : ${get_result.suhu}\n`
+                    ini_txt += `⭔ Udara : ${get_result.udara}\n`
+                    ini_txt += `⭔ Permukaan laut : ${get_result.permukaan_laut}\n`
+                    m.reply(ini_txt)
+                    break
+					case 'lirik':
+                    if (args.length == 0) throw(`Example: ${prefix + command} Melukis Senja`)
+                    query = args.join(" ")
+                    get_result = await fetchJson(`http://api.lolhuman.xyz/api/lirik?apikey=woaibeijingtiananmen&query=${query}`)
+                    ini_txt = `[ *LIRIK LAGU SEARCH* ]\n\n`
+					ini_txt = `${get_result.result}`
+		m.reply(ini_txt)
+		break
+		case 'jadwaltv':
+                    if (args.length == 0) throw(`Example: ${prefix + command} ANTV`)
+                    query = args.join(" ")
+                    get_result = await fetchJson(`http://api.lolhuman.xyz/api/jadwaltv/${kueri}?apikey=woaibeijingtiananmen&query=${query}`)
+                    ini_txt = `[ *JADWAL TV* ]\n\n`
+					ini_txt = `${get_result.result}`
+		m.reply(ini_txt)
+		case 'covidindo': case 'coronaindo':
+		get_result = await fetchJson(`https://api.lolhuman.xyz/api/corona/indonesia?apikey=woaibeijingtiananmen`)
+		get_result = get_result.result
+		ini_txt = `[ *CORONA INDONESIA* ]\n\n`
+		ini_txt += `⭔ Positive : ${get_result.positif}\n`
+		ini_txt += `⭔ Meninggal : ${get_result.meninggal}\n`
+		ini_txt += `⭔ Sembuh : ${get_result.sembuh}\n`
+		ini_txt += `⭔ Dirawat : ${get_result.dirawat}\n`
+		m.reply(ini_txt)
+                    break
+					case 'covidglobal': case 'coronaglobal':
+		get_result = await fetchJson(`https://api.lolhuman.xyz/api/corona/global?apikey=woaibeijingtiananmen`)
+		get_result = get_result.result
+		ini_txt = `[ *CORONA GLOBAL* ]\n\n`
+		ini_txt += `⭔ Positive : ${get_result.positive}\n`
+		ini_txt += `⭔ Meninggal : ${get_result.meninggal}\n`
+		ini_txt += `⭔ Sembuh : ${get_result.sembuh}\n`
+		ini_txt += `⭔ Dirawat : ${get_result.dirawat}\n`
+		m.reply(ini_txt)
+                    break
+					case 'art':
+                case 'bts':
+                case 'exo':
+                case 'elf':
+                case 'loli':
+                case 'neko':
+                case 'waifu':
+                case 'shota':
+                case 'husbu':
+                case 'sagiri':
+                case 'shinobu':
+                case 'megumin':
+                case 'wallnime':
+                let buttonas = [
+                    {buttonId: `${command}`, buttonText: {displayText: 'Next'}, type: 1}
+                ]
+                let buttonMesasage = {
+                    image: { url: `http://api.lolhuman.xyz/api/random/${command}?apikey=woaibeijingtiananmen` },
+                    caption: `Random image for ${command}`,
+                    footer: arietube.user.name,
+                    buttons: buttonas,
+                    headerType: 4
+                }
+                arietube.sendMessage(m.chat, buttonMesasage, { quoted: m })
+				
+            
+			break
+			case 'dj': case 'darkjoke':
+                let dj1 = [
+                    {buttonId: `darkjoke`, buttonText: {displayText: 'Next'}, type: 1}
+                ]
+                let dj2 = {
+                    image: { url: `https://api.lolhuman.xyz/api/meme/darkjoke?apikey=woaibeijingtiananmen` },
+                    caption: `JANGAN BAPER YAKK`,
+                    footer: arietube.user.name,
+                    buttons: dj1,
+                    headerType: 4
+                }
+                arietube.sendMessage(m.chat, dj2, { quoted: m })
+				
+            
+			break
+			case 'rm': case 'randommeme':
+                let rm1 = [
+                    {buttonId: `randommeme`, buttonText: {displayText: 'Next'}, type: 1}
+                ]
+                let rm2 = {
+                    image: { url: `https://api.lolhuman.xyz/api/random/meme?apikey=woaibeijingtiananmen` },
+                    caption: `TAHAN KETAWA NGAB MWEHEHEHE`,
+                    footer: `Random Meme`,
+                    buttons: rm1,
+                    headerType: 4
+                }
+                arietube.sendMessage(m.chat, rm2, { quoted: m })
+				
+            
+			break
+			case 'mindo': case 'memeindo':
+                let mi1 = [
+                    {buttonId: `memeindo`, buttonText: {displayText: 'Next'}, type: 1}
+                ]
+                let mi2 = {
+                    image: { url: `https://api.lolhuman.xyz/api/meme/memeindo?apikey=woaibeijingtiananmen` },
+                    caption: `TAHAN KETAWA NGAB MWEHEHEHE`,
+                    footer: `Cintailah meme lokal`,
+                    buttons: mi1,
+                    headerType: 4
+                }
+                arietube.sendMessage(m.chat, mi2, { quoted: m })
+				
+            
+			break
+			case 'randommobil': case 'rmobil':
+                let rb1 = [
+                    {buttonId: `rmobil`, buttonText: {displayText: 'Next'}, type: 1}
+                ]
+                let rb2 = {
+                    image: { url: `https://zenzapis.xyz/randomimage/mobil?apikey=woaibeijingtiananmen` },
+                    caption: `Random Car`,
+                    footer: `Random Car`,
+                    buttons: rb1,
+                    headerType: 4
+                }
+                arietube.sendMessage(m.chat, rb2, { quoted: m })
+			break
+			case 'rkucing': case 'randomkucing':
+                let rk1 = [
+                    {buttonId: `rkucing`, buttonText: {displayText: 'Next'}, type: 1}
+                ]
+                let rk2 = {
+                    image: { url: `https://zenzapis.xyz/randomimage/kucing?apikey=woaibeijingtiananmen` },
+                    caption: `MEONG 🐱`,
+                    footer: `Random Cat`,
+                    buttons: rk1,
+                    headerType: 4
+                }
+                arietube.sendMessage(m.chat, rk2, { quoted: m })
+				
+            
+			break
+			case 'ranjing': case 'randomanjing':
+                let ra1 = [
+                    {buttonId: `ranjing`, buttonText: {displayText: 'Next'}, type: 1}
+                ]
+                let ra2 = {
+                    image: { url: `https://zenzapis.xyz/randomimage/anjing?apikey=woaibeijingtiananmen` },
+                    caption: `GUK GUK 🐶`,
+                    footer: `Random Dog`,
+                    buttons: ra1,
+                    headerType: 4
+                }
+                arietube.sendMessage(m.chat, ra2, { quoted: m })
+				
+            
+			break
+			case 'randompp': case 'rpp':
+                let rp1 = [
+                    {buttonId: `randompp`, buttonText: {displayText: 'Next'}, type: 1}
+                ]
+                let rp2 = {
+                    image: { url: `https://zenzapis.xyz/randomimage/profil?apikey=woaibeijingtiananmen` },
+                    caption: `PP Estetik`,
+                    footer: `Random Profile Picture`,
+                    buttons: rp1,
+                    headerType: 4
+                }
+                arietube.sendMessage(m.chat, rp2, { quoted: m })
+				
+            
+			break
+			case 'ranime': case 'animer': 
+                let rv1 = [
+                    {buttonId: `ranime`, buttonText: {displayText: 'Next'}, type: 1}
+                ]
+                let rv2 = {
+                    image: { url: `https://zenzapis.xyz/randomanime/anime?apikey=woaibeijingtiananmen` },
+                    caption: `Kawaii >//<`,
+                    footer: `Random Anime`,
+                    buttons: rv1,
+                    headerType: 4
+                }
+                arietube.sendMessage(m.chat, rv2, { quoted: m })
+				
+            
+			break
+			case 'rmotor': case 'randommotor':
+                let rt1 = [
+                    {buttonId: `randommotor`, buttonText: {displayText: 'Next'}, type: 1}
+                ]
+                let rt2 = {
+                    image: { url: `https://zenzapis.xyz/randomimage/motor?apikey=woaibeijingtiananmen` },
+                    caption: `Kepengen yaa mwehehe:v`,
+                    footer: `Random Motor`,
+                    buttons: rt1,
+                    headerType: 4
+                }
+                arietube.sendMessage(m.chat, rt2, { quoted: m })
+				
+            
+			break
+			
+			case 'rboneka': case 'randomboneka':
+                let rs1 = [
+                    {buttonId: `randomboneka`, buttonText: {displayText: 'Next'}, type: 1}
+                ]
+                let rs2 = {
+                    image: { url: `https://zenzapis.xyz/randomimage/boneka?apikey=woaibeijingtiananmen` },
+                    caption: `Hayoo tes nyali :D`,
+                    footer: `Random Boneka`,
+                    buttons: rs1,
+                    headerType: 4
+                }
+                arietube.sendMessage(m.chat, rs2, { quoted: m })
+				
+            
+			break
+			case 'rblackpink': case 'rbp': case 'randomblackpink':
+                let kp1 = [
+                    {buttonId: `rbp`, buttonText: {displayText: 'Next'}, type: 1}
+                ]
+                let kp2 = {
+                    image: { url: `https://zenzapis.xyz/randomimage/blackpink?apikey=woaibeijingtiananmen` },
+                    caption: `Cantik :)`,
+                    footer: `Random Blackpink`,
+                    buttons: kp1,
+                    headerType: 4
+                }
+                arietube.sendMessage(m.chat, kp2, { quoted: m })
+				
+            
+			break
+			case '1cak': case 'wancak': case 'onecak':
+                let kw1 = [
+                    {buttonId: `wancak`, buttonText: {displayText: 'Next'}, type: 1}
+                ]
+                let kw2 = {
+                    image: { url: `https://api.lolhuman.xyz/api/onecak?apikey=woaibeijingtiananmen` },
+                    caption: `Ngakak awokawokawok:v`,
+                    footer: `Cintailah Meme Lokal`,
+                    buttons: kw1,
+                    headerType: 4
+                }
+                arietube.sendMessage(m.chat, kw2, { quoted: m })
+			break
+			
+			case 'infogempa': case 'bmkggempa':
+             get_result = await fetchJson(`https://zenzapis.xyz/information/bmkg/gempa?apikey=woaibeijingtiananmen`)
+			get_result = get_result.result
+			ini_txt = `⭔ Tanggal: ${get_result.tanggal}\n`
+			ini_txt += `⭔ Jam: ${get_result.jam}\n`
+			ini_txt += `⭔ Koordinat: ${get_result.coordinates}\n`
+			ini_txt += `⭔ Lintang: ${get_result.lintang}\n`
+			ini_txt += `⭔ Bujur: ${get_result.bujur}\n`
+			ini_txt += `⭔ Kekuatan: ${get_result.magnitude} SR\n`
+			ini_txt += `⭔ Kedalaman: ${get_result.kedalaman}\n`
+			ini_txt += `⭔ Wilayah: ${get_result.wilayah}\n`
+			ini_txt += `⭔ Potensi: ${get_result.potensi}\n`
+			ini_txt += `⭔ Wilayah yg dirasakan: ${get_result.dirasakan}\n`
+			 
+			arietube.sendImage(m.chat, get_result.shakemap, ini_txt, m)
+			break
+			case 'translate':
+			if (args.length == 0) throw (`Example: ${prefix + command} en Tahu Bacem\n\n_Bahasa yang didukung dapat dilihat di: https://sites.google.com/site/opti365/translate_codes_`)
+                    kode_negara = args[0]
+                    args.shift()
+                    ini_txt = args.join(" ")
+                    get_result = await fetchJson(`https://zenzapis.xyz/information/translate/${kode_negara}?query=${ini_txt}&apikey=woaibeijingtiananmen`)
+                   
+                    init_txt = `From : Deteksi Bahasa\n`
+                    init_txt += `To : ${kode_negara}\n`
+                    init_txt += `Original : ${ini_txt}\n`
+                    init_txt += `Translated : ${get_result.result}\n`
+                    m.reply(init_txt)
+                    break
+					case 'resoomer': case 'ringkas':
+					daoxiang = args.join(" ")
+                    anu = await fetchJson(`http://api.lolhuman.xyz/api/resoomer?apikey=woaibeijingtiananmen&text=${daoxiang}`)
+                   arietube.sendText(m.chat, anu.result, m)
+                    break
+		
+			case 'akinator': 
+                    if (akinator.hasOwnProperty(m.sender.split('@')[0])) throw ("Selesein yg sebelumnya dulu atuh")
+                    get_result = await fetchJson(`https://api.lolhuman.xyz/api/akinator/start?apikey=woaibeijingtiananmen`)
+                    let { server, frontaddr, session, signature, question, step } = get_result.result
+                    const data = {}
+                    data["server"] = server
+                    data["frontaddr"] = frontaddr
+                    data["session"] = session
+                    data["signature"] = signature
+                    data["question"] = question
+                    data["step"] = step
+                    imi_txt = `${question}\n\n`
+                    imi_txt += "0 - Ya\n"
+                    imi_txt += "1 - Tidak\n"
+                    imi_txt += "2 - Saya Tidak Tau\n"
+                    imi_txt += "3 - Mungkin\n"
+                    imi_txt += "4 - Mungkin Tidak"
+                    arietube.sendText(m.chat, imi_txt, m).then(() => {
+                        akinator[m.sender.split('@')[0]] = data
+                        fs.writeFileSync("./akidb/akinator.json", JSON.stringify(akinator))
+                    })
+                    break
+                case 'cancelakinator':
+                    if (!akinator.hasOwnProperty(m.sender.split('@')[0])) throw ("Anda tidak memiliki akinator sebelumnya")
+                    delete akinator[m.sender.split('@')[0]]
+                    fs.writeFileSync("./akidb/akinator.json", JSON.stringify(akinator))
+                    m.reply("Success mengcancel akinator sebelumnya")
+                    break
+			case 'namaninja':
+			if (args.length == 0) throw (`Example: ${prefix + command} Eline`)
+			kueri = args.join(" ")
+		     get_result = await fetchJson(`https://api.lolhuman.xyz/api/ninja?apikey=woaibeijingtiananmen&nama=${kueri}`)
+			 m.reply(get_result.result)
+			 break
             case 'setmenu': {
             if (!isCreator) throw mess.owner
             let setbot = db.data.settings[botNumber]
@@ -3095,7 +3673,7 @@ let capt = `⭔ Title: ${judul}
             }
             break
             case 'list': case 'menu': case 'help': case '?': {
-             anu = `
+             anus = `
 ╔═══❖•ೋ°
 ╟𓆩Welcome to 𝐆𝐀𝐁𝐔𝐓𝐁𝐎𝐓-𝐌𝐃 ♡ Whatsapp Bot!
 ╟ Silahkan dipakai :D
@@ -3123,18 +3701,11 @@ let capt = `⭔ Title: ${judul}
 ╟📤 ${prefix}upvote
 ╟📤 ${prefix}cekvote
 ╟📤 ${prefix}hapusvote
+╟📤 ${prefix}spamchat [text]
 ╚═════ ▓▓ ࿇
 
 ╔═ *🌐 Internet Menu*
-╟
-╟🌏 ${prefix}playstore
-╟🌏 ${prefix}gsmarena
-╟🌏 ${prefix}jadwalbioskop
-╟🌏 ${prefix}nowplayingbioskop
-╟🌏 ${prefix}aminio
-╟🌏 ${prefix}wattpad
-╟🌏 ${prefix}webtoons
-╟🌏 ${prefix}drakor
+╟🌏 ${prefix}internetmenu
 ╚═════ ▓▓ ࿇
 
 
@@ -3163,6 +3734,7 @@ let capt = `⭔ Title: ${judul}
 
 ╔═ *🔍 Searching Menu*
 ╟
+╟⏏️ ${prefix}kusonimesearch [query]
 ╟🔃 ${prefix}play [query]
 ╟🔃 ${prefix}yts [query]
 ╟🔃 ${prefix}google [query]
@@ -3180,27 +3752,12 @@ let capt = `⭔ Title: ${judul}
 ╟🔃 ${prefix}ffusername [User ID]
 ╟🔃 ${prefix}minecraftserverstatus [Server IP]
 ╟🔃 ${prefix}genshinchara [query]
+╟🔃 ${prefix}lirik [query]
+╟🔃 ${prefix}jadwaltv [query]
 ╚═════ ▓▓ ࿇
 
 ╔═ *🆎 Random Menu*
-╟
-╟🔗 ${prefix}coffe
-╟🔗 ${prefix}quotesanime
-╟🔗 ${prefix}motivasi
-╟🔗 ${prefix}dilanquote
-╟🔗 ${prefix}bucinquote
-╟🔗 ${prefix}katasenja
-╟🔗 ${prefix}puisi
-╟🔗 ${prefix}couple
-╟🔗 ${prefix}anime
-╟🔗 ${prefix}waifu
-╟🔗 ${prefix}husbu
-╟🔗 ${prefix}neko
-╟🔗 ${prefix}shinobu
-╟🔗 ${prefix}waifus (nsfw)
-╟🔗 ${prefix}nekos (nsfw)
-╟🔗 ${prefix}trap (nsfw)
-╟🔗 ${prefix}blowjob (nsfw)
+╟🔗 ${prefix}randomimage
 ╚═════ ▓▓ ࿇
 
 ╔═ *📃 TextPro Menu*
@@ -3286,6 +3843,8 @@ let capt = `⭔ Title: ${judul}
 ╟🎮 ${prefix}suitbot
 ╟🎮 ${prefix}slot
 ╟🎮 ${prefix}cekaku
+╟🎮 ${prefix}akinator
+╟🎮 ${prefix}cancelakinator
 ╚═════ ▓▓ ࿇
 
 ╔═ *🦪 Kerang Ajaib Menu*
@@ -3339,7 +3898,7 @@ let capt = `⭔ Title: ${judul}
 ╟🔮 ${prefix}shio
 ╚═════ ▓▓ ࿇
 
-╔═ *🗜️ Convert Menu*
+╔═ *🗜️ Creator/Convert Menu*
 ╟
 ╟🗜️ ${prefix}attp
 ╟🗜️ ${prefix}ttp
@@ -3358,20 +3917,14 @@ let capt = `⭔ Title: ${judul}
 ╟🗜️ ${prefix}dbinary
 ╟🗜️ ${prefix}styletext
 ╟🗜️ ${prefix}smeme
+╟🗜️ ${prefix}ktpmaker
+╟🗜️ ${prefix}bucincert [nama]
+╟🗜️ ${prefix}tololcert [nama]
+╟🗜️ ${prefix}pacarcert [nama1|nama2]
 ╚═════ ▓▓ ࿇
 
 ╔═ *📋 Main Menu*
-╟
-╟📋 ${prefix}ping
-╟📋 ${prefix}owner
-╟📋 ${prefix}menu / ${prefix}help / ${prefix}?
-╟📋 ${prefix}delete
-╟📋 ${prefix}infochat
-╟📋 ${prefix}quoted
-╟📋 ${prefix}listpc
-╟📋 ${prefix}listgc
-╟📋 ${prefix}listonline
-╟📋 ${prefix}speedtest
+╟📋 ${prefix}mainmenu
 ╚═════ ▓▓ ࿇
 
 ╔═ *📁 Database Menu*
@@ -3461,19 +4014,123 @@ let capt = `⭔ Title: ${judul}
                             }]
                          let setbot = db.data.settings[botNumber]
                         if (setbot.templateImage) {
-                        arietube.send5ButImg(m.chat, anu, arietube.user.name, global.thumb, btn, global.thumb)
+                        arietube.send5ButImg(m.chat, anus, arietube.user.name, global.thumb, btn, global.thumb)
                         } else if (setbot.templateGif) {
-                        arietube.send5ButGif(m.chat, anu, arietube.user.name, global.vitube, btn, global.thumb)
+                        arietube.send5ButGif(m.chat, anus, arietube.user.name, global.vitube, btn, global.thumb)
                         } else if (setbot.templateVid) {
-                        arietube.send5ButVid(m.chat, anu, arietube.user.name, global.vitube, btn, global.thumb)
+                        arietube.send5ButVid(m.chat, anus, arietube.user.name, global.vitube, btn, global.thumb)
                         } else if (setbot.templateMsg) {
-                        arietube.send5ButMsg(m.chat, anu, arietube.user.name, btn)
+                        arietube.send5ButMsg(m.chat, anus, arietube.user.name, btn)
                         } else if (setbot.templateLocation) {
-                        arietube.send5ButLoc(m.chat, anu, arietube.user.name, global.thumb, btn)
+                        arietube.send5ButLoc(m.chat, anus, arietube.user.name, global.thumb, btn)
                         }
                      }
             break
+			case 'randomimage':
+			 let sections = [
+                {
+                title: "Random Image 1",
+                rows: [
+                {title: "Random Kucing", rowId: `rkucing`, description: `Random Kucing yg Sangat Kawaii`},
+                {title: "Random Anjing", rowId: `ranjing`, description: `Random Anjing yg Sangat Kawaii`},
+                {title: "Random Mobil", rowId: `rmobil`, description: `Random Mobil yg Sangat Keren`},
+                {title: "Random Motor", rowId: `rmotor`, description: `Random Motor yg sangat Keren`},
+                {title: "Random PP", rowId: `rpp`, description: `Random PP Estetik`},
+				{title: "Random Boneka", rowId: `rboneka`, description: `Random Boneka Seram`},
+				{title: "Random Blackpink", rowId: `rblackpink`, description: `Random K-Pop Blackpink`},
+                ]
+                },{
+					title: "Random Image 2",
+					rows: [
+					{title: "Random Kopi", rowId: `coffe`, description: `Pagi-pagi enaknya ngopi :)`},
+					{title: "Random Art", rowId: `art`, description: `Random Seni`},
+                {title: "Random Couple", rowId: `couple2`, description: `Random PP Couple untuk Pasangan`},
+                {title: "Random BTS", rowId: `bts`, description: `Random K-Pop BTS`},
+                {title: "Random EXO", rowId: `exo`, description: `Random K-Pop EXO`},
+                {title: "Random Elf", rowId: `elf`, description: `Random Elf`},
+                ]
+                },{
+					title: "Random Anime Image",
+					rows: [
+				{title: "Random Anime", rowId: `animer`, description: `Random Anime >///<`},
+				{title: "Random Waifu", rowId: `waifu`, description: `Random Istri Anime`},
+				{title: "Random Husbu", rowId: `husbu`, description: `Random Suami Anime`},
+				{title: "Random Waifu", rowId: `waifu`, description: `Random Istri Anime`},
+				{title: "Random Neko", rowId: `neko`, description: `Random Kucing tapi Anime`},
+				{title: "Random Shinobu", rowId: `shinobu`, description: `Random Shinobu`},
+				{title: "Random Waifux", rowId: `waifus`, description: `Random Waifu (NSFW)`},
+				{title: "Random Nekox", rowId: `nekos`, description: `Random Neko (NSFW)`},
+				{title: "Random Trap", rowId: `trap`, description: `Random Trap Anime (NSFW)`},
+				{title: "Random Blowjob", rowId: `blowjob`, description: `Random Blowjob (NSFW)`},
+				]
+				},{
+					title: "Random Meme",
+					rows: [
+					{title: "Darkjoke", rowId: `dj`, description: `Random Meme Gelap :v`},
+				{title: "Random Meme", rowId: `randommeme`, description: `Random Meme Awokawok`},
+				{title: "1cak Meme", rowId: `wancak`, description: `Random Meme dari Wancak`},
+				{title: "Meme Lokal", rowId: `memeindo`, description: `Random Mim Lokal`},
+				]
+				},{
+					title: "Random Text",
+					rows: [
+				{title: "Quote Anime", rowId: `quotesanime`, description: `Kata Bijak dari Anime Kalian`},
+				{title: "Kata Motivasi", rowId: `motivasi`, description: `Mengubah Hidup Kalian`},
+				{title: "Quote Dilan", rowId: `dilanquote`, description: `Quote Bucin dari Dilan`},
+				{title: "Quote Bucin", rowId: `bucinquote`, description: `Quote Bucin <3`},
+				{title: "Kata Senja", rowId: `katasenja`, description: `Kata dari matahari untuk kalian :)`},
+				{title: "Random Puisi", rowId: `puisi`, description: `Puisi yang indah membuat kalian bahagia <3`},
+				]
+				},
+		]
+                arietube.sendListMsg(m.chat, `*Silahkan Pilih Menu Dibawah Ini*`, `GabutBot-MD V1.5`, `RANDOM IMAGE`, `Click Here`, sections, m)
+				break
+				case 'internetmenu':
+			 let sectioans = [
+                {
+                title: "Internet Menu",
+                rows: [
+				{title: "Play Store Info", rowId: `playstore`, description: `Usage: .playstore [query]`},
+				{title: "GSMArena Info", rowId: `gsmarena`, description: `Mencari info HP. Usage: .gsmarena [query]`},
+				{title: "Jadwal Bioskop", rowId: `jadwalbioskop`, description: `Jadwal film bioskop hari ini. Usage: .jadwalbioskop [kota]`},
+				{title: "Now Playing Bioskop", rowId: `nowplayingbioskop`, description: `Film bioskop hari ini di Indonesia`},
+				{title: "Komunitas Amino", rowId: `aminio`, description: `Mencari Komunitas dari Game. Usage: .aminio [query]`},
+				{title: "Wattpad", rowId: `wattpad`, description: `Mencari novel dari wattpad. Usage: .wattpad [query]`},
+				{title: "Webtoons", rowId: `webtoons`, description: `Mencari komik dari webtoon. Usage: .webtoon [query]`},
+				{title: "Drakor Search", rowId: `drakor`, description: `Mencari drakor. Usage: .drakor [query]`},
+				{title: "Info Gempa", rowId: `infogempa`, description: `Info gempa hari ini di Indonesia`},
+				{title: "Info Cuaca", rowId: `cuaca`, description: `Info Cuaca dari kota. Usage: .cuaca [kota]`},
+				{title: "Translate", rowId: `translate`, description: `Terjemahan Google. Usage: .translate [kode negara] [teks]`},
+				{title: "Covid Indonesia", rowId: `covidindo`, description: `Informasi Covid-19 hari ini di Indonesia`},
+				{title: "Covid Global", rowId: `covidglobal`, description: `Informasi Covid-19 hari ini di dunia`},
+				]
+				},
+				]
+				 arietube.sendListMsg(m.chat, `*Silahkan Pilih Menu Dibawah Ini*`, `GabutBot-MD V1.5`, `DOWNLOAD MENU`, `Click Here`, sectioans, m)
+				break
+				case 'mainmenu':
+			 let vio = [
+                {
+                title: "Main Menu",
+                rows: [
+				{title: "Status Bot", rowId: `ping`, description: `Melihat status bot/kecepatan bot`},
+				{title: "Owner Bot", rowId: `owner`, description: `Nomor Owner gua yg ganteng ini TwT`},
+				{title: "Menu Utama", rowId: `menu`, description: `Semua menu dalam bot ini`},
+				{title: "Info Chat", rowId: `infochat`, description: `Melihat siapa saja yg melihat pesan bot. Usage: .infochat [reply bot]`},
+				{title: "Quoted", rowId: `quoted`, description: `Membuat pesan menjadi status "Diteruskan". Usage: .quoted [reply pesan]`},
+				{title: "List Private Chat", rowId: `listpc`, description: `Melihat List Chat yg pernah bot chat`},
+				{title: "List Group Chat", rowId: `listgc`, description: `Melihat List Group Chat yg pernah bot chat`},
+				{title: "List Online", rowId: `listonline`, description: `Melihat Siapa saya yg online`},
+				{title: "Speed Test", rowId: `speedtest`, description: `Tes kecepatan internet`},
+				]
+				},
+				]
+				 arietube.sendListMsg(m.chat, `*Silahkan Pilih Menu Dibawah Ini*`, `GabutBot-MD V1.5`, `MAIN MENU`, `Click Here`, vio, m)
+				break
             default:
+			
+		
+                   
                 if (budy.startsWith('=>')) {
                     if (!isCreator) return m.reply(mess.owner)
                     function Return(sul) {
