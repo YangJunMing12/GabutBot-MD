@@ -38,7 +38,7 @@ let asahotak = db.data.game.asahotak = []
 let tebakbendera = db.data.game.tebakbendera = []
 let tekateki = db.data.game.tekateki = []
 let vote = db.data.others.vote = []
-let akinator = JSON.parse(fs.readFileSync('./akidb/akinator.json'))
+let akinator = JSON.parse(fs.readFileSync('./src/akinator.json'))
 
 module.exports = arietube = async (arietube, m, chatUpdate, store) => {
     try {
@@ -226,7 +226,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
                     ini_txt += "*Sekian dan terima gaji. Akinator by GabutBot*"
                     await arietube.sendImage(m.chat, get_result.image, ini_txt, m).then(() => {
                         delete akinator[m.sender.split('@')[0]]
-                        fs.writeFileSync("./akidb/akinator.json", JSON.stringify(akinator))
+                        fs.writeFileSync("./src/akinator.json", JSON.stringify(akinator))
                     })
                     return
                 }
@@ -256,7 +256,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
                     data_["question"] = question
                     data_["step"] = step
                     akinator[m.sender.split('@')[0]] = data_
-                    fs.writeFileSync("./akidb/akinator.json", JSON.stringify(akinator))
+                    fs.writeFileSync("./src/akinator.json", JSON.stringify(akinator))
                 })
             }
         if (tebaklagu.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
@@ -3602,13 +3602,13 @@ let capt = `⭔ Title: ${judul}
                     imi_txt += "4 - Mungkin Tidak"
                     arietube.sendText(m.chat, imi_txt, m).then(() => {
                         akinator[m.sender.split('@')[0]] = data
-                        fs.writeFileSync("./akidb/akinator.json", JSON.stringify(akinator))
+                        fs.writeFileSync("./src/akinator.json", JSON.stringify(akinator))
                     })
                     break
                 case 'cancelakinator':
                     if (!akinator.hasOwnProperty(m.sender.split('@')[0])) throw ("Anda tidak memiliki akinator sebelumnya")
                     delete akinator[m.sender.split('@')[0]]
-                    fs.writeFileSync("./akidb/akinator.json", JSON.stringify(akinator))
+                    fs.writeFileSync("./src/akinator.json", JSON.stringify(akinator))
                     m.reply("Success mengcancel akinator sebelumnya")
                     break
 			case 'namaninja':
