@@ -22,7 +22,7 @@ const { performance } = require('perf_hooks')
 const { Primbon } = require('scrape-primbon')
 const primbon = new Primbon()
 const { smsg, formatp, tanggal, formatDate, getTime, isUrl, sleep, clockString, runtime, fetchJson, getBuffer, jsonformat, format, parseMention, getRandom, getGroupAdmins } = require('./lib/myfunc')
-
+const { Toxic } = require('./lib/Toxic.js')
 // read database
 let tebaklagu = db.data.game.tebaklagu = []
 let _family100 = db.data.game.family100 = []
@@ -972,6 +972,84 @@ break
                     await arietube.sendButtonText(m.chat, buttons, jawab, arietube.user.name, m, {mentions: menst})
             }
             break
+			case 'bebangrup': 
+			if (!m.isGroup) throw mess.group
+					let membear = participants.map(u => u.id)
+					let oranag = membear[Math.floor(Math.random() * membear.length)]
+					let teks = `Nih beban Grup @${oranag.split('@')[0]}`
+					let meanst = [oranag]
+            let buttaons = [
+                        { buttonId: 'bebangrup', buttonText: { displayText: 'Beban' }, type: 1 }
+                    ]
+                    await arietube.sendButtonText(m.chat, buttaons, teks, arietube.user.name, m, {mentions: meanst})
+            break
+			case 'babigrup':
+			if (!m.isGroup) throw mess.group
+					let memberr = participants.map(u => u.id)
+					let orag = memberr[Math.floor(Math.random() * memberr.length)]
+					let ters = `Nih babi di Grup @${orag.split('@')[0]}, jangan baper yak:v`
+					let meansrt = [orag]
+            let buttns = [
+                        { buttonId: 'babigrup', buttonText: { displayText: 'Babi' }, type: 1 }
+                    ]
+                    await arietube.sendButtonText(m.chat, buttns, ters, arietube.user.name, m, {mentions: meansrt})
+            break
+			case 'kerengrup':
+			if (!m.isGroup) throw mess.group
+					let krn = participants.map(u => u.id)
+					let oranng = krn[Math.floor(Math.random() * krn.length)]
+					let texx = `Wihh si keren kita nih 😎 @${oranng.split('@')[0]}`
+					let mesrt = [oranng]
+            let butons = [
+                        { buttonId: 'kerengrup', buttonText: { displayText: 'Keren' }, type: 1 }
+                    ]
+                    await arietube.sendButtonText(m.chat, butons, texx, arietube.user.name, m, {mentions: mesrt})
+            break
+			case 'cantikgrup':
+			if (!m.isGroup) throw mess.group
+					let cantik1 = participants.map(u => u.id)
+					let mantap1 = cantik1[Math.floor(Math.random() * cantik1.length)]
+					let vio1 = `Wihh si paling cute dan cantik ☺ @${mantap1.split('@')[0]}`
+					let men1 = [mantap1]
+            let butons1 = [
+                        { buttonId: 'cantikgrup', buttonText: { displayText: 'Cantik' }, type: 1 }
+                    ]
+                    await arietube.sendButtonText(m.chat, butons1, vio1, arietube.user.name, m, {mentions: men1})
+            break
+			case 'gantenggrup':
+			if (!m.isGroup) throw mess.group
+					let gtg1 = participants.map(u => u.id)
+					let mantap2 = gtg1[Math.floor(Math.random() * gtg1.length)]
+					let vio2 = `Anjayyy sungkem si paling ganteng😎😆 @${mantap2.split('@')[0]}`
+					let men2 = [mantap2]
+            let butons2 = [
+                        { buttonId: 'gantenggrup', buttonText: { displayText: 'Ganteng' }, type: 1 }
+                    ]
+                    await arietube.sendButtonText(m.chat, butons2, vio2, arietube.user.name, m, {mentions: men2})
+            break
+			case 'pintargrup':
+			if (!m.isGroup) throw mess.group
+					let pintaar = participants.map(u => u.id)
+					let mantap3 = pintaar[Math.floor(Math.random() * pintaar.length)]
+					let vio3 = `Ayo belajar biar pinter kek @${mantap3.split('@')[0]}`
+					let men3 = [mantap3]
+            let butons3 = [
+                        { buttonId: 'pintargrup', buttonText: { displayText: 'Pintar' }, type: 1 }
+                    ]
+                    await arietube.sendButtonText(m.chat, butons3, vio3, arietube.user.name, m, {mentions: men3})
+            break
+			case 'wibugrup':
+			if (!m.isGroup) throw mess.group
+					let wibu = participants.map(u => u.id)
+					let mantap4 = wibu[Math.floor(Math.random() * wibu.length)]
+					let vio4 = `Anjayy si pemuja anime @${mantap4.split('@')[0]}`
+					let men4 = [mantap4]
+            let butons4 = [
+                        { buttonId: 'wibugrup', buttonText: { displayText: 'WIBU' }, type: 1 }
+                    ]
+                    await arietube.sendButtonText(m.chat, butons4, vio4, arietube.user.name, m, {mentions: men4})
+            break
+					
             case 'react': {
                 if (!isCreator) throw mess.owner
                 reactionMessage = {
@@ -1791,7 +1869,7 @@ break
 	        let { floNime } = require('./lib/uploader')
 	        let fatGans = await floNime(dwnld)
 	        let smeme = `https://api.memegen.link/images/custom/${encodeURIComponent(atas)}/${encodeURIComponent(bawah)}.png?background=${fatGans.result.url}`
-	        let FaTiH = await arietube.sendImageAsSticker(m.chat, smeme, m, { packname: global.packname, author: global.auhor })
+	        let FaTiH = await arietube.sendImageAsSticker(m.chat, smeme, m, { packname: global.packname, author: global.author })
 	        await fs.unlinkSync(FaTiH)
             }
 	       break     
@@ -3473,6 +3551,7 @@ let capt = `⭔ Title: ${judul}
 				
             
 			break
+			
 			case 'ranime': case 'animer': 
                 let rv1 = [
                     {buttonId: `ranime`, buttonText: {displayText: 'Next'}, type: 1}
@@ -3672,6 +3751,115 @@ let capt = `⭔ Title: ${judul}
                 }
             }
             break
+			case 'kbbi':
+			if (args.length == 0) throw (`Example: ${prefix + command} sabar`)
+				kueri = args.join(" ")
+			get_result = await fetchJson(`https://api.lolhuman.xyz/api/kbbi?apikey=woaibeijingtiananmen&query=${kueri}`)
+			get_result = get_result.result
+			ini_txt = `⭔ Nama : ${get_result[0].nama}\n`
+			ini_txt += `⭔ Nomor : ${get_result[0].nomor}\n`
+			ini_txt += `⭔ Kata Dasar : ${get_result[0].kata_dasar}\n`
+			ini_txt += `⭔ Pelafalan : ${get_result[0].pelafalan}\n`
+			ini_txt += `⭔ Bentuk Tidak Baku : ${get_result[0].bentuk_tidak_baku}\n`
+			ini_txt += `⭔ Varian : ${get_result[0].varian}\n\n`
+			ini_txt += `*MAKNA*\n`
+			for (var x of get_result) {
+				ini_txt += `*Kelas :* \n`
+				ini_txt += `⭔ Kode : ${x.makna[0].kelas[0].kode}\n`
+				ini_txt += `⭔ Nama : ${x.makna[0].kelas[0].nama}\n`
+				ini_txt += `⭔ Deskripsi : ${x.makna[0].kelas[0].deskripsi}\n\n`
+				ini_txt += `⭔ Submakna : ${x.makna[0].submakna[0]}\n\n`
+				ini_txt += `⭔ Contoh : ${x.makna[0].contoh[0]}\n\n`
+			}
+			m.reply(ini_txt)
+			break
+			 case 'shopee':
+                if (args.length == 0) throw (`Example: ${prefix + command} tas`)
+                    query = args.join(" ")
+                    get_result = await fetchJson(`https://api.lolhuman.xyz/api/shopee?apikey=woaibeijingtiananmen&query=${query}`)
+                    get_result = get_result.result
+                    ini_txt = '[ *SHOPEE SEARCH* ]\n\n'
+                    for (var x of get_result) {
+                        ini_txt += `⭔ Nama Barang : ${x.name}\n`
+                        ini_txt += `⭔ Harga : ${x.price}\n`
+                        ini_txt += `⭔ Terjual : ${x.sold}\n`
+                        ini_txt += `⭔ Stok : ${x.stock}\n`
+                        ini_txt += `⭔ Lokasi : ${x.shop_loc}\n`
+                        ini_txt += `⭔ Deskripsi : ${x.desc}\n`
+						ini_txt += `⭔ Link : ${x.link_produk}\n`
+                    }
+                    m.reply(ini_txt)
+					break
+			          case 'brainly':
+                    if (args.length == 0) throw (`Example: ${prefix + command} Soekarno adalah`)
+                    query = args.join(" ")
+                    get_result = await fetchJson(`http://api.lolhuman.xyz/api/brainly?apikey=woaibeijingtiananmen&query=${query}`)
+                    get_result = get_result.result
+                    ini_txt = "[ *BRAINLY SEARCH* ]\n\n"
+                    for (var x of get_result) {
+                        ini_txt += `⭔ *Pertanyaan* : ${x.question.content}\n`
+                        ini_txt += `⭔ *Jawaban* : ${x.answer[0].content}\n\n`
+                    }
+                    m.reply(ini_txt)
+                    break
+					case 'tebakgender':					
+
+			if (args.length == 0) throw (`Example: ${prefix + command} Jeremy`)
+			kueri = args.join(" ")
+			get_result = await fetchJson(`https://api.lolhuman.xyz/api/tebakgender?apikey=woaibeijingtiananmen&name=${kueri}`)
+			get_result = get_result.result
+			ini_txt = `⭔ Nama: ${get_result.name}\n`
+			ini_txt += `⭔ Gender: ${get_result.gender}\n`
+			m.reply(ini_txt)
+					break	
+			case 'chord':
+		
+			if (args.length == 0) throw (`Example: ${prefix + command} Melukis Senja`)
+			kueri = args.join(" ")
+			get_result = await fetchJson(`https://api.lolhuman.xyz/api/chord?apikey=woaibeijingtiananmen&query=${kueri}`)
+			get_result = get_result.result
+			ini_txt = `⭔ Judul: ${get_result.title}\n`
+			ini_txt += `⭔ Dibuat: ${get_result.created}\n`
+			ini_txt += `⭔ Chord: ${get_result.chord}\n`
+			
+			m.reply(ini_txt)
+					break
+		case 'toxickalimat':
+              Toxic().then(toxic => {
+              m.reply (toxic)
+})
+break
+		case 'countdate':
+			if (args.length == 0) throw (`Example: ${prefix + command} Hari|Bulan|Tahun`)
+			get_args = args.join(" ").split("|")
+                    hari = get_args[0]
+                    bulan = get_args[1]
+					tahun = get_args[2]
+			get_result = await fetchJson(`https://api.lolhuman.xyz/api/countdown/${hari}/${bulan}/${tahun}?apikey=woaibeijingtiananmen`)
+			get_result = get_result.result
+			m.reply(get_result)
+			break
+		case 'kodetelepon':
+			if (args.length == 0) throw(`Example: ${prefix + command} 62`)
+			kueri = args[0]
+			get_result = await fetchJson(`https://api.lolhuman.xyz/api/callingcode/${kueri}?apikey=woaibeijingtiananmen`)
+			get_result = get_result.result
+			ini_txt = `⭔ Nama: ${get_result.name}\n`
+			ini_txt += `⭔ Domain: ${get_result.topLevelDomain}\n`
+			ini_txt += `⭔ Kode Telepon: ${get_result.callingCodes}\n`
+			ini_txt += `⭔ Ibu Kota: ${get_result.capital}\n`
+			ini_txt += `⭔ Penyebutan: ${get_result.altSpellings}\n`
+			ini_txt += `⭔ Region: ${get_result.region}\n`
+			m.reply(ini_txt)
+					break
+		case 'ssweb':
+                    if (args.length == 0) return reply(`Example: ${prefix + command} https://www.google.com`)
+                    kueri = args[0]
+                    ini_buffer = await getBuffer(`https://api.lolhuman.xyz/api/ssweb?apikey=woaibeijingtiananmen&url=${kueri}`)
+                  arietube.sendImage(m.chat, ini_buffer, 'Screenshot Website', m)
+                   					
+                   					
+                    break						
             case 'list': case 'menu': case 'help': case '?': {
              anus = `
 ╔═══❖•ೋ°
@@ -3753,6 +3941,7 @@ let capt = `⭔ Title: ${judul}
 ╟🔃 ${prefix}minecraftserverstatus [Server IP]
 ╟🔃 ${prefix}genshinchara [query]
 ╟🔃 ${prefix}lirik [query]
+╟🔃 ${prefix}chord [query]
 ╟🔃 ${prefix}jadwaltv [query]
 ╚═════ ▓▓ ࿇
 
@@ -3862,6 +4051,11 @@ let capt = `⭔ Title: ${judul}
 ╟🌏 ${prefix}gaycek [query]
 ╟🌏 ${prefix}gaycek [query]
 ╟🌏 ${prefix}cekpasangan [query1|query2]
+╟🌏 ${prefix}cekgender [nama]
+╚═════ ▓▓ ࿇
+
+╔═ *📃 Tag Menu*
+╟📋 ${prefix}tagmenu
 ╚═════ ▓▓ ࿇
 
 ╔═ *🔮 Primbon Menu*
@@ -4094,15 +4288,17 @@ let capt = `⭔ Title: ${judul}
 				{title: "GSMArena Info", rowId: `gsmarena`, description: `Mencari info HP. Usage: .gsmarena [query]`},
 				{title: "Jadwal Bioskop", rowId: `jadwalbioskop`, description: `Jadwal film bioskop hari ini. Usage: .jadwalbioskop [kota]`},
 				{title: "Now Playing Bioskop", rowId: `nowplayingbioskop`, description: `Film bioskop hari ini di Indonesia`},
-				{title: "Komunitas Amino", rowId: `aminio`, description: `Mencari Komunitas dari Game. Usage: .aminio [query]`},
+				{title: "Komunitas Amino", rowId: `aminio`, description: `Mencari komunitas game. Usage: .aminio [query]`},
 				{title: "Wattpad", rowId: `wattpad`, description: `Mencari novel dari wattpad. Usage: .wattpad [query]`},
 				{title: "Webtoons", rowId: `webtoons`, description: `Mencari komik dari webtoon. Usage: .webtoon [query]`},
 				{title: "Drakor Search", rowId: `drakor`, description: `Mencari drakor. Usage: .drakor [query]`},
 				{title: "Info Gempa", rowId: `infogempa`, description: `Info gempa hari ini di Indonesia`},
-				{title: "Info Cuaca", rowId: `cuaca`, description: `Info Cuaca dari kota. Usage: .cuaca [kota]`},
+				{title: "Info Cuaca", rowId: `cuaca`, description: `Info cuaca dari kota. Usage: .cuaca [kota]`},
 				{title: "Translate", rowId: `translate`, description: `Terjemahan Google. Usage: .translate [kode negara] [teks]`},
 				{title: "Covid Indonesia", rowId: `covidindo`, description: `Informasi Covid-19 hari ini di Indonesia`},
 				{title: "Covid Global", rowId: `covidglobal`, description: `Informasi Covid-19 hari ini di dunia`},
+				{title: "Brainly", rowId: `brainly`, description: `Informasi jawaban dari Brainly. Usage: .brainly [query]`},
+				{title: "KBBI", rowId: `kbbi`, description: `Informasi kata Bahasa Indonesia dari KBBI. Usage: .kbbi [kata]`},
 				]
 				},
 				]
@@ -4126,6 +4322,23 @@ let capt = `⭔ Title: ${judul}
 				},
 				]
 				 arietube.sendListMsg(m.chat, `*Silahkan Pilih Menu Dibawah Ini*`, `GabutBot-MD V1.5`, `MAIN MENU`, `Click Here`, vio, m)
+				break
+				case 'tagmenu':
+			 let tagg = [
+                {
+                title: "Tag Menu",
+                rows: [
+				{title: "Si Paling Beban", rowId: `bebangrup`, description: `Siapa yg beban disini ya??`},
+				{title: "Si Babi di Grup", rowId: `babigrup`, description: `Tes kebaperan yuk awokawok:v`},
+				{title: "Si Paling Keren😎😎", rowId: `kerengrup`, description: `Anjayyy keren sekali orang ini😎😋`},
+				{title: "Si Paling Pinter", rowId: `pintargrup`, description: `Belajarlah dari orang ini`},
+				{title: "Si Paling Wibu", rowId: `wibugrup`, description: `Anjay wibu 😌😌`},
+				{title: "Si Cantik bak Bidadari", rowId: `cantikgrup`, description: `Wow cantik sekali org ini😍`},
+				{title: "Si Ganteng bak tuan Putra", rowId: `gantenggrup`, description: `Ganteng sekaliii tuan putra ini :D`},
+				]
+				},
+				]
+				 arietube.sendListMsg(m.chat, `*Menu tag seseorang yg si paling...*`, `GabutBot-MD V1.5`, `TAG MENU`, `Click Here`, tagg, m)
 				break
             default:
 			
