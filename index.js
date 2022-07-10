@@ -73,7 +73,7 @@ async function startarietube() {
     const arietube = arietubeConnect({
         logger: pino({ level: 'silent' }),
         printQRInTerminal: true,
-        browser: ['arietube Multi Device','Safari','1.0.0'],
+        browser: ['GabutBot-MD Connection','Firefox','1.0.0'],
         auth: state
     })
    
@@ -84,7 +84,7 @@ async function startarietube() {
     const callerId = json.content[0].attrs['call-creator']
     if (json.content[0].tag == 'offer') {
     let pa7rick = await arietube.sendContact(callerId, global.owner)
-    arietube.sendMessage(callerId, { text: `Sistem otomatis block!\nJangan menelpon bot!\nSilahkan Hubungi Owner Untuk Dibuka !`}, { quoted : pa7rick })
+    arietube.sendMessage(callerId, { text: `Sistem otomatis block! Jangan menelpon bot!\nSilahkan Hubungi Owner Untuk Dibuka !`}, { quoted : pa7rick })
     await sleep(8000)
     await arietube.updateBlockStatus(callerId, "block")
     }
