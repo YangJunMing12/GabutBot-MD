@@ -1,9 +1,6 @@
 /**
-   * Jangan asal edit Ntar error nages
-   * Create By Dika Ardnt.
-   * Recode By arietube
-   * Contact Me on wa.me/6285828357727
-   * https://m.youtube.com/channel/UC0rPHvwr0sJtaccF8Mm1Xng
+  * Jangan asal edit cuk biarin aja kek gini
+  * Recode: Shine Sebastian
 */
 
 require('./config')
