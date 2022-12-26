@@ -3,6 +3,7 @@
    * Recode By ArieTube
    * Contact Me on wa.me/6285828357727
    * subscribe : https://m.youtube.com/channel/UC0rPHvwr0sJtaccF8Mm1Xng
+   * Active SC by : 𝚇𝚝𝚛𝚊𝚠
 */
 
 const fs = require('fs')
@@ -20,12 +21,12 @@ global.APIKeys = {
 
 // Configuration BOT
 
-global.owner = ['628116646665'] //Nomor lu
-global.premium = ['628116646665'] //Nomor lu
-global.packname = 'GabutBot-MD' //Nama bot lu utk wm stiker
-global.author = 'ShinySebastian' //Nama lu utk wm stiker
-global.sessionName = 'gabutbot' //Nama session
-global.prefa = ['','!','.','🐦','🐤','🗿'] //Prefix bot serah lo mau ubah atau ga
+global.owner = ['6285159907432'] //Nomor lu
+global.premium = ['6285159907432'] //Nomor lu
+global.packname = '𝚇𝚝𝚊𝚠𝚅𝙱𝚘𝚝𝚣-MD' //Nama bot lu utk wm stiker
+global.author = '𝚇𝚝𝚛𝚊𝚠-𝚢𝚛2' //Nama lu utk wm stiker
+global.sessionName = '𝚅𝙱𝚘𝚝𝚣' //Nama session
+global.prefa = ['','!'*'.','🐦','🐤','🗿'] //Prefix bot serah lo mau ubah atau ga
 global.sp = '⭔'
 global.mess = {
     success: '✓ Success',
@@ -40,7 +41,7 @@ global.mess = {
 }
 global.limitawal = {
     premium: "Infinity",
-    free: 100
+    free: 30
 }
 global.thumb = fs.readFileSync('./lib/arietube.jpg')
 global.vitube = { url: 'https://telegra.ph/file/15209657f9d4f59c7ca1e.mp4' }
