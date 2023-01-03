@@ -1,4 +1,4 @@
-Last Updated Version: GabutBot IV V4.0
+Last Updated Version: GabutBot IV v4.0
 
 # BOT APAKAH INI?
 Bot ini adalah bot MD (Multi-Device), sehingga bot ini dapat digunakan meskipun hp pengguna mati. Bot ini masih dalam pengembangan (baileys beta) sehingga terdapat masih banyak bug di dalamnya. Bot ini No Encrypt, sehingga pengguna dapat recode (asal jangan dijual juga) dan dapat menambah fitur tertentu dengan apikey. 
@@ -144,6 +144,6 @@ Get Apikey zenz on [`zenz`](https://zenzapi.xyz/pricing) harga murah kok sans
 License: [MIT](https://en.wikipedia.org/wiki/MIT_License)
 
 Support Me
-* [`OVO`] 08116646665
+* ```OVO``` 08116646665
 
 # Thank you and have fun!
