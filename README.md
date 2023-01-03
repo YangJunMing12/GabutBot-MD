@@ -3,6 +3,8 @@ Last Updated Version: GabutBot IV v4.0
 # BOT APAKAH INI?
 Bot ini adalah bot MD (Multi-Device), sehingga bot ini dapat digunakan meskipun hp pengguna mati. Bot ini masih dalam pengembangan (baileys beta) sehingga terdapat masih banyak bug di dalamnya. Bot ini No Encrypt, sehingga pengguna dapat recode (asal jangan dijual juga) dan dapat menambah fitur tertentu dengan apikey. 
 
+Recode by me and [`Naze`](https://github.com/nazedev)
+
 # GabutBot IV
 Full Featured Bot Updated Script 🤖
 
@@ -136,6 +138,7 @@ Get Apikey zenz on [`zenz`](https://zenzapi.xyz/pricing) harga murah kok sans
 * [`Nurutomo`](https://github.com/Nurutomo)
 * [`Mhankbarbar`](https://github.com/MhankBarBar)
 * [`Faiz`](https://github.com/FaizBastomi)
+* [`Naze Dev`](https://github.com/nazedev)
 * [`Shiny Sebastian`](https://github.com/YangJunMing12)
 
 ```Thanks to all who have participated in the development of this script```
