@@ -1,19 +1,18 @@
 # BOT APAKAH INI?
-Bot ini adalah bot MD (Multi-Device), sehingga bot ini dapat digunakan meskipun hp pengguna mati. Bot ini masih dalam pengembangan (baileys beta) sehingga terdapat masih banyak bug di dalamnya. Bot ini no enc, sehingga pengguna dapat recode (asal jangan dijual juga) dan dapat menambah fitur tertentu dengan apikey. 
+Bot ini adalah bot MD (Multi-Device), sehingga bot ini dapat digunakan meskipun hp pengguna mati. Bot ini masih dalam pengembangan (baileys beta) sehingga terdapat masih banyak bug di dalamnya. Bot ini No Encrypt, sehingga pengguna dapat recode (asal jangan dijual juga) dan dapat menambah fitur tertentu dengan apikey. 
 
-# GabutBot MD
-Script WhatsApp Bot Multi Device
+# GabutBot IV
+Full Featured Bot Updated Script 🤖
 
 ## NOTE
 This Script is for everyone, not for sale. Jika dijual neraka menunggumu brother !
 
 <p align="center">
-	<img src="https://i.ibb.co/JQJ8MWh/demon-slayer-tanjiro-kamado-with-sharp-sword-on-fire-hd-anime-hd.jpg" width="35%" style="margin-left: auto;margin-right: auto;display: block;">
+	<img src="https://i.ibb.co/HNrcfzB/wallpapersden-com-ao-no-exorcist-okumura-rin-man-1996x1413.jpg" width="35%" style="margin-left: auto;margin-right: auto;display: block;">
 </p>
-<h1 align="center">GabutBot-MD</h1>
+<h1 align="center">GabutBot IV</h1>
 
 This is Script of WhatsApp multi device, working with [`@adiwajshing/baileys`](https://github.com/adiwajshing/baileys)
-
 
 ## UNTUK PENGGUNA WINDOWS/RDP
 
@@ -24,7 +23,7 @@ This is Script of WhatsApp multi device, working with [`@adiwajshing/baileys`](h
 
 ```bash
 npm install yarn --global
-git clone https://github.com/YangJunMing12/GabutBot-MD
+git clone https://github.com/YangJunMing12/GabutBot-IV
 cd GabutBot-MD
 yarn
 npm start
@@ -46,7 +45,7 @@ apt update && apt upgrade
 apt install git -y
 apt install nodejs -y
 apt install ffmpeg -y
-git clone https://github.com/YangJunMing12/GabutBot-MD
+git clone https://github.com/YangJunMing12/GabutBot-IV
 cd GabutBot-MD
 npm install
 ```
@@ -62,6 +61,65 @@ yarn
 ```bash
 $ node .
 ```
+
+## Features
+
+| Group |                     Feature                |
+| :------------: | :---------------------------------------------: |
+|       ✅        |  Hidetag               |
+|       ✅        |  Grup close atau open       |
+|       ✅        |  Gcname          |
+|       ✅        |  Gcdesk       |
+|       ✅        |  Add              |
+|       ✅        |  Kick              |
+|       ✅        |  Ownergc              |
+|       ✅        |  Leave              |
+|       ✅        |  Promote              |
+|       ✅        |  Demote              |
+|       ✅        |  Ephemeral             |
+|       ✅        |  Vote           |
+|       ✅        |  Antilink         |
+
+| Search |                     Feature                |
+| :------------: | :---------------------------------------------: |
+|       ✅        |  Youtube play             |
+|       ✅        |  Youtube search     |
+|       ✅        |  Google & google image      |
+|       ✅        |  Pinterest       |
+|       ✅        |  Search Wallpaper           |
+|       ✅        |  Youtube Search             |
+|       ✅        |  Spotify Search           |
+|       ✅        |  Wikimedia             |
+|       ✅        |  Ringtone             |
+|       ✅        |  Stalk People          |
+|       ✅        |  Cerpen           |
+|       ✅        |  Gsmarena            |
+|       ✅        |  Kamus KBBI          |
+
+| Creator |                     Feature                |
+| :------------: | :---------------------------------------------: |
+|       ✅        |  ATTP & TTP            |
+|       ✅        |  Sticker To Image/Video/GIF   |
+|       ✅        |  Emoji Mix     |
+|       ✅        |  Pinterest       |
+|       ✅        |  Sticker          |
+|       ✅        |  Sticker WM            |
+|       ✅        |  Sticker Meme         |
+|       ✅        |  KTP Fake Maker         |
+|       ✅        |  Sertifikat Bucin/Pacaran/Tolol        |
+|       ✅        |  Translate Kode Biner         |
+
+| Downloader |                     Feature                |
+| :------------: | :---------------------------------------------: |
+|       ✅        |  Tiktok WM/No WM/Slide Show            |
+|       ✅        |  Spotify/Joox/SoundCloud Download |
+|       ✅        |  Youtube Music     |
+|       ✅        |  Youtube Video      |
+|       ✅        |  Facebook/IG/Twitter Download          |
+|       ✅        |  ZippyShare Download       |
+|       ✅        |  Get Music or Get Video        |
+
+... and more! Menfess, fun menu ready 
 
 ## ❗ Warning
 WhatsApp bot is still in the development stage, so there are a few bugs
