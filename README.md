@@ -1,5 +1,6 @@
 # FATE OF THE BOT
 Dikarenakan [`@adiwajshing/baileys`](https://github.com/adiwajshing/baileys) sudah tidak mensupport base bot ini bahkan laman GitHub-nya sudah ditutup, maka bot ini kemungkinan tidak akan berjalan lagi. Saya akan mencari base bot yang baru, dan akan mengupdate bot ini sebisa saya. Sekali lagi mohon maaf untuk seluruh Gabuters yang mendownload bot ini, dan doakan semoga bot ini akan kembali update dan berjalan normal.
+
 Last Updated Version: GabutBot IV v4.0
 
 # BOT APAKAH INI?
