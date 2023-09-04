@@ -1,23 +1,25 @@
-# FATE OF THE BOT
-Dikarenakan [`@adiwajshing/baileys`](https://github.com/adiwajshing/baileys) sudah tidak mensupport base bot ini bahkan laman GitHub-nya sudah ditutup, maka bot ini kemungkinan tidak akan berjalan lagi. Saya akan mencari base bot yang baru, dan akan mengupdate bot ini sebisa saya. Sekali lagi mohon maaf untuk seluruh Gabuters yang mendownload bot ini, dan doakan semoga bot ini akan kembali update dan berjalan normal.
+# BOT IS BACK #AIUPDATE
+Dikarenakan saya sudah mendapatkan base baru dan Baileys terbaru dari situs [`NPM`](https://www.npmjs.com/package/baileys), maka bot sudah dapat berjalan dengan benar, terimakasih banyak untuk yang telah mendukung pengembangan bot ini, namun saya meminta maaf jika ada fitur yang dipangkas seperti game, tictactoe, akinator, buttons dll karena Baileys ini masih dalam pengembangan. Doakan supaya bot bisa kembali update dengan normal. Have fun dan #SalamCoding!
 
-Last Updated Version: GabutBot IV v4.0
+Bot ini sekarang memiliki fitur OpenAI Chat dan buat gambar dari AI, buat seru-seruan aja wkwkwkwk :)
+
+Last Updated Version: GabutBot-Reborn v5.0
 
 # BOT APAKAH INI?
 Bot ini adalah bot MD (Multi-Device), sehingga bot ini dapat digunakan meskipun hp pengguna mati. Bot ini masih dalam pengembangan (baileys beta) sehingga terdapat masih banyak bug di dalamnya. Bot ini No Encrypt, sehingga pengguna dapat recode (asal jangan dijual juga) dan dapat menambah fitur tertentu dengan apikey. 
 
-Recode by me and [`Naze`](https://github.com/nazedev)
+Recode by me and [`ManzSteviaOFC`](https://www.youtube.com/channel/UCHEszLndQmgMITqKtwy2DXQ))
 
-# GabutBot IV
+# GabutBot-Reborn
 Full Featured Bot Updated Script 🤖
 
 ## NOTE
-This Script is for everyone, not for sale. Jika dijual neraka menunggumu brother !
+This script is for everyone, not for sale. Jika dijual neraka menunggumu brother !
 
 <p align="center">
 	<img src="https://i.ibb.co/HNrcfzB/wallpapersden-com-ao-no-exorcist-okumura-rin-man-1996x1413.jpg" width="35%" style="margin-left: auto;margin-right: auto;display: block;">
 </p>
-<h1 align="center">GabutBot IV</h1>
+<h1 align="center">GabutBot-Reborn</h1>
 
 This is Script of WhatsApp multi device, working with [`@adiwajshing/baileys`](https://github.com/adiwajshing/baileys)
 
@@ -30,7 +32,7 @@ This is Script of WhatsApp multi device, working with [`@adiwajshing/baileys`](h
 
 ```bash
 npm install yarn --global
-git clone https://github.com/YangJunMing12/GabutBot-IV
+git clone https://github.com/YangJunMing12/GabutBot-mD
 cd GabutBot-MD
 yarn
 npm start
@@ -54,7 +56,7 @@ apt install nodejs -y
 apt install ffmpeg -y
 git clone https://github.com/YangJunMing12/GabutBot-IV
 cd GabutBot-MD
-npm install
+npm i
 ```
 
 ## RECOMMENDED INSTALL ON TERMUX
@@ -99,7 +101,6 @@ $ node .
 |       ✅        |  Wikimedia             |
 |       ✅        |  Ringtone             |
 |       ✅        |  Stalk People          |
-|       ✅        |  Cerpen           |
 |       ✅        |  Gsmarena            |
 |       ✅        |  Kamus KBBI          |
 
@@ -126,14 +127,20 @@ $ node .
 |       ✅        |  ZippyShare Download       |
 |       ✅        |  Get Music or Get Video        |
 
+| AI Chat (NEW!) |                     Feature                |
+| :------------: | :---------------------------------------------: |
+|       ✅        |  Chat Open AI & Open AI Turbo 3.5           |
+|       ✅        |  Dall-E & Diffusion (Buat gambar dari AI) |
+|       ✅        |  Speech to text    |
+
 ... and more! Menfess, fun menu ready 
 
 ## ❗ Warning
-WhatsApp bot is still in the development stage, so there are a few bugs
+WhatsApp Bot is still in the development stage, so there are a few bugs
 WhatsApp Connection (BETA, not working perfectly)
 
 Editing Number Owner & session name in [`config.js`]
-Get Apikey zenz on [`zenz`](https://zenzapi.xyz/pricing) harga murah kok sans 
+Get Apikey LolHuman on [`LolHuman`](https://api.lolhuman.xyz) harga murah kok sans 
 
 
 ## Thanks To
@@ -141,7 +148,6 @@ Get Apikey zenz on [`zenz`](https://zenzapi.xyz/pricing) harga murah kok sans
 * [`Nurutomo`](https://github.com/Nurutomo)
 * [`Mhankbarbar`](https://github.com/MhankBarBar)
 * [`Faiz`](https://github.com/FaizBastomi)
-* [`Naze Dev`](https://github.com/nazedev)
 * [`Shiny Sebastian`](https://github.com/YangJunMing12)
 
 ```Thanks to all who have participated in the development of this script```
